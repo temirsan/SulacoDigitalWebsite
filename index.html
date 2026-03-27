@@ -33,65 +33,59 @@
             color: #9ca3af !important;
         }
 
-        /* Spectral card: phone left, content right */
         .spectral-card {
-            flex-direction: row;
+            display: grid;
+            grid-template-columns: 2fr 3fr;
             align-items: stretch;
             padding: 0;
             overflow: hidden;
-            text-align: left;
             min-height: 460px;
         }
 
-        .portfolio-phone {
-            width: 36%;
-            flex-shrink: 0;
+        .card-phone {
             display: flex;
-            align-items: flex-end;
-            justify-content: flex-end;
-            padding: 6.5rem 2rem 6.5rem 15%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem 1.5rem;
         }
 
-        .portfolio-phone img {
-            width: clamp(120px, 80%, 210px);
+        .card-phone img {
+            max-width: 210px;
+            width: 80%;
             display: block;
             border-radius: 24px 24px 0 0;
             object-fit: cover;
-            object-position: top center;
+            object-position: top;
         }
 
-        .portfolio-content {
-            flex: 1;
+        .card-body {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 1.75rem;
-            padding: 3rem 3rem 3rem 1rem;
+            padding: 3rem;
             text-align: center;
+            overflow: hidden;
         }
 
-        .portfolio-content-top h3 {
+        .card-body h3 {
             font-size: 2.2rem;
-            margin-bottom: 0.75rem;
+            margin: 0;
         }
 
-        .portfolio-content-top p {
+        .card-body > p {
             color: #d1d5db;
-            font-size: 0.9rem;
             line-height: 1.6;
-            margin-bottom: 0;
-            max-width: 70%;
-            margin: 0 auto;
+            max-width: 72%;
+            margin: 0;
         }
 
-        .portfolio-content-mid a.card-link {
-            display: inline-block;
+        .card-body .card-link {
             padding: 0.65rem 2rem;
             border: 1px solid rgba(139,92,246,0.45);
             border-radius: 10px;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
         }
 
         .store-btns {
@@ -115,16 +109,14 @@
             margin: -9.5px 0;
         }
 
-        .store-btns a:hover img {
-            opacity: 1;
-        }
+        .store-btns a:hover img { opacity: 1; }
 
         @media (max-width: 960px) {
-            .spectral-card { flex-direction: column; align-items: center; text-align: center; }
-            .portfolio-phone { width: auto; padding: 2.5rem 2rem 0; justify-content: center; }
-            .portfolio-phone img { width: clamp(120px, 45vw, 190px); }
-            .portfolio-content { padding: 2rem 2rem 2.5rem; }
-            .portfolio-content-top p { max-width: 90%; }
+            .spectral-card { grid-template-columns: 1fr; }
+            .card-phone { padding: 2rem 2rem 0; }
+            .card-phone img { max-width: 190px; width: 45vw; }
+            .card-body { padding: 2rem; }
+            .card-body > p { max-width: 90%; }
         }
     </style>
 </head>
@@ -158,17 +150,13 @@
         <h2>App Portfolio</h2>
         <div class="cards-grid">
             <div class="glass-card spectral-card">
-                <div class="portfolio-phone">
+                <div class="card-phone">
                     <img src="frames/explore_dark.png" alt="Spectral">
                 </div>
-                <div class="portfolio-content">
-                    <div class="portfolio-content-top">
-                        <h3>Spectral</h3>
-                        <p>Your wallpaper, your rules. Generate, layer, and apply one-of-a-kind backgrounds built around your style, not someone else's.</p>
-                    </div>
-                    <div class="portfolio-content-mid">
-                        <a href="apps/spectral/index.html" class="card-link">VIEW APP</a>
-                    </div>
+                <div class="card-body">
+                    <h3>Spectral</h3>
+                    <p>Your wallpaper, your rules. Generate, layer, and apply one-of-a-kind backgrounds built around your style, not someone else's.</p>
+                    <a href="apps/spectral/index.html" class="card-link">VIEW APP</a>
                     <div class="store-btns">
                         <a href="#" target="_blank" rel="noopener">
                             <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" height="40">
