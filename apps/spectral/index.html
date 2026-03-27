@@ -33,39 +33,40 @@
 
         /* Gallery */
         .gallery-wrap {
-            padding: 0 5% 4rem 5%;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .gallery-card {
-            background: rgba(8, 4, 20, 0.6);
-            border: 1px solid var(--glass-border-dark);
-            border-radius: 24px;
-            padding: 2rem;
+            padding: 0 0 6rem 0;
             overflow: hidden;
+            position: relative;
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
         }
 
         .gallery-scroll {
             display: flex;
-            gap: 1.25rem;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 0.5rem;
-            scrollbar-width: none;
+            width: max-content;
+            animation: gallery-autoscroll 28s linear infinite;
         }
 
-        .gallery-scroll::-webkit-scrollbar { display: none; }
+        .gallery-scroll:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes gallery-autoscroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .gallery-set {
+            display: flex;
+            gap: 1.25rem;
+            padding-right: 1.25rem;
+        }
 
         .gallery-scroll img {
             width: 200px;
-            height: 360px;
+            height: auto;
             flex-shrink: 0;
             border-radius: 18px;
-            object-fit: cover;
-            object-position: top center;
-            scroll-snap-align: start;
+            display: block;
             opacity: 0.85;
             transition: opacity 0.2s, transform 0.2s;
         }
@@ -80,7 +81,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
-            padding: 0 5% 5rem 5%;
+            padding: 0 5% 7rem 5%;
             max-width: 1100px;
             margin: 0 auto;
         }
@@ -113,9 +114,50 @@
             line-height: 1.6;
         }
 
+        /* Device showcase */
+        .device-showcase {
+            position: relative;
+            width: 712px;
+            height: 345px;
+            flex-shrink: 0;
+        }
+
+        .device-showcase img {
+            position: absolute;
+            display: block;
+            height: auto;
+            bottom: 0;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+        }
+
+        /* Phone: leftmost, smallest */
+        .device-phone {
+            width: 109px;
+            left: 0;
+            z-index: 3;
+        }
+
+        /* Foldable: phone center = foldable left edge */
+        .device-foldable {
+            width: 242px;
+            left: 54px;
+            z-index: 2;
+        }
+
+        /* Tablet: foldable center = tablet left edge */
+        .device-tablet {
+            width: 537px;
+            left: 175px;
+            z-index: 1;
+        }
+
         @media (max-width: 768px) {
             .spectral-features { grid-template-columns: 1fr 1fr; }
-            .gallery-scroll img { width: 160px; height: 290px; }
+            .gallery-scroll img { width: 150px; }
+            .device-showcase { width: 340px; height: 165px; }
+            .device-phone { width: 52px; left: 0; }
+            .device-foldable { width: 116px; left: 26px; }
+            .device-tablet { width: 257px; left: 84px; }
         }
     </style>
 </head>
@@ -146,19 +188,31 @@
             </div>
         </div>
         <div class="app-hero-visual">
-            <img src="../../frames/explore_dark.png" class="app-preview" alt="Spectral App">
+            <div class="device-showcase">
+                <img src="../../frames/collections_tablet.png" class="device-tablet" alt="Spectral on Tablet">
+                <img src="../../frames/explore_dark.png" class="device-phone" alt="Spectral on Phone">
+                <img src="../../frames/image_editor_foldable.png" class="device-foldable" alt="Spectral on Foldable">
+            </div>
         </div>
     </div>
 
     <div class="gallery-wrap">
-        <div class="gallery-card">
-            <div class="gallery-scroll">
+        <div class="gallery-scroll">
+            <div class="gallery-set">
                 <img src="../../frames/collections_dark.png" alt="Collections">
                 <img src="../../frames/my_library_dark.png" alt="My Library">
                 <img src="../../frames/overlays_dark.png" alt="Overlays">
                 <img src="../../frames/background_generator.png" alt="Background Generator">
                 <img src="../../frames/image_editor_stripes.png" alt="Image Editor">
                 <img src="../../frames/explore_light.png" alt="Explore">
+            </div>
+            <div class="gallery-set" aria-hidden="true">
+                <img src="../../frames/collections_dark.png" alt="">
+                <img src="../../frames/my_library_dark.png" alt="">
+                <img src="../../frames/overlays_dark.png" alt="">
+                <img src="../../frames/background_generator.png" alt="">
+                <img src="../../frames/image_editor_stripes.png" alt="">
+                <img src="../../frames/explore_light.png" alt="">
             </div>
         </div>
     </div>

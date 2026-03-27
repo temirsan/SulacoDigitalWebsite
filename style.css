@@ -554,7 +554,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4rem 5% 6rem 5%;
+    padding: 4rem 5% 8rem 5%;
 }
 
 .app-hero-content {
@@ -661,11 +661,11 @@ nav {
     padding: 2rem 5%;
     border-top: 1px solid var(--glass-border-dark);
     font-size: 0.8rem;
-    color: #9ca3af;
+    color: #ffffff;
 }
 
 .page-footer a {
-    color: #9ca3af;
+    color: #ffffff;
     text-decoration: none;
     margin: 0 0.75rem;
     transition: color 0.2s;
