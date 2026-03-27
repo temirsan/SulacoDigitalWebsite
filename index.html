@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sulaco Digital — App Portfolio</title>
+    <title>Sulaco Digital | App Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <style>
         body {
@@ -109,7 +109,7 @@
             transition: opacity 0.2s;
         }
 
-        /* Google Play badge has built-in whitespace — compensate visually */
+        /* Google Play badge has built-in whitespace, compensate visually */
         .store-btns a img[alt*="Google"] {
             height: 59px;
             margin: -9.5px 0;
@@ -164,7 +164,7 @@
                 <div class="portfolio-content">
                     <div class="portfolio-content-top">
                         <h3>Spectral</h3>
-                        <p>Discover a universe of stunning, curated wallpapers designed for your device. Fresh collections updated daily.</p>
+                        <p>Your wallpaper, your rules. Generate, layer, and apply one-of-a-kind backgrounds built around your style, not someone else's.</p>
                     </div>
                     <div class="portfolio-content-mid">
                         <a href="apps/spectral/index.html" class="card-link">VIEW APP</a>
@@ -231,7 +231,8 @@
 
         function goTo(idx) {
             current = idx;
-            track.style.transform = 'translateX(-' + (idx * 300) + 'px)';
+            const slideWidth = track.parentElement.offsetWidth;
+            track.style.transform = 'translateX(-' + (idx * slideWidth) + 'px)';
             document.querySelectorAll('.carousel-dot').forEach((d, i) => {
                 d.classList.toggle('active', i === idx);
             });

@@ -89,6 +89,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 4rem 5% 8rem 5%;
+    overflow: hidden;
 }
 
 .hero-content {
@@ -672,6 +673,14 @@ nav {
 
 .page-footer a:hover {
     color: #a78bfa;
+}
+
+/* ── Medium screens (narrow desktop / tablet) ── */
+@media (max-width: 960px) {
+    .carousel-wrap { width: 220px; height: 380px; }
+    .carousel-slide { width: 220px; height: 380px; }
+    .hero-content { max-width: 380px; }
+    .hero h1 { font-size: 3rem; }
 }
 
 /* ── Responsive ── */
