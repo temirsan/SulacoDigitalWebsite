@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Sulaco Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Inverted background gradient for the about page */
+        body {
+            background-image: radial-gradient(ellipse 160% 70% at 50% 48%, #020105 0%, #0f0524 18%, #2a1565 35%, #5a35e6 55%, #9b6dff 72%, #d8c8ff 88%);
+        }
+
+        /* Glass cards tuned for the purple gradient background */
+        .glass-card-dark.with-accent {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+        }
+
+        .card-accent {
+            width: 3px;
+            flex-shrink: 0;
+            align-self: stretch;
+            background: linear-gradient(to bottom, #8b5cf6, transparent);
+            border-radius: 3px;
+        }
+
+        .card-body {
+            flex: 1;
+        }
+
+        .glass-card-dark {
+            background: var(--glass-bg-dark);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border-dark);
+        }
+
+        .skill-box {
+            background: var(--glass-bg-dark);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border-dark);
+            transition: border-color 0.2s;
+        }
+
+        .skill-box:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-logo">Sulaco Digital</a>
+        <ul class="nav-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#portfolio">Portfolio</a></li>
+            <li><a href="blog.html">Blog</a></li>
+        </ul>
+        <a href="contact.html" class="nav-cta">CONTACT US</a>
+    </nav>
+
+    <div class="page-hero">
+        <h1>About <span>Me</span></h1>
+        <p>Senior Android Engineer building high-traffic apps for millions of users.</p>
+    </div>
+
+    <div class="content-section">
+        <div class="glass-card-dark">
+            <p>
+                I'm Temir Atambayev, a Senior Android Engineer based in Auckland, New Zealand with over 8 years of experience building mobile applications that serve millions of users. My career spans market leaders like Trade Me - New Zealand's largest online marketplace - as well as HudApp, one of the world's fastest-growing dating platforms available in 145 countries.
+            </p>
+            <p>
+                I specialise in modernising legacy codebases, scaling architecture with MVVM and MVI patterns, and adopting modern UI toolkits like Jetpack Compose. Whether it's integrating payment systems, leading performance optimisations, or shipping features end-to-end, I care deeply about code quality and seamless user experience.
+            </p>
+            <p>
+                Beyond engineering, I enjoy mentoring junior developers and conducting code reviews. I've also delivered Android training courses and have a background in computer science from Nazarbayev University. If you have a project in mind or want to collaborate, I'd love to hear from you.
+            </p>
+        </div>
+
+        <p class="section-label">Skills &amp; Expertise</p>
+        <div class="skills-grid">
+            <div class="skill-box">
+                <h4>Android Development</h4>
+                <p>Native apps with Kotlin &amp; Java</p>
+            </div>
+            <div class="skill-box">
+                <h4>Jetpack Compose</h4>
+                <p>Modern declarative Android UI</p>
+            </div>
+            <div class="skill-box">
+                <h4>App Architecture</h4>
+                <p>MVVM, MVI, MVP patterns</p>
+            </div>
+            <div class="skill-box">
+                <h4>API &amp; SDK Integration</h4>
+                <p>REST, Firebase, payments, analytics</p>
+            </div>
+            <div class="skill-box">
+                <h4>Google Play Publishing</h4>
+                <p>Console management &amp; app releases</p>
+            </div>
+            <div class="skill-box">
+                <h4>Team Leadership</h4>
+                <p>Mentoring &amp; code reviews</p>
+            </div>
+        </div>
+
+        <p class="section-label" style="margin-top: 3rem;">Experience</p>
+        <div class="glass-card-dark with-accent">
+            <div class="card-accent"></div>
+            <div class="card-body">
+            <p style="margin-bottom: 1.5rem;">
+                <strong style="color: #ffffff; font-family: 'Playfair Display', serif; font-size: 1rem;">Senior Android Developer - Trade Me Ltd</strong><br>
+                <span style="font-size: 0.8rem; color: #a78bfa; letter-spacing: 1px;">June 2022 - Present</span><br>
+                Implementing and enhancing features on New Zealand's largest marketplace platform. Integrating RESTful APIs, converting legacy Java to Kotlin, and mentoring junior engineers.
+            </p>
+            <p style="margin-bottom: 1.5rem;">
+                <strong style="color: #ffffff; font-family: 'Playfair Display', serif; font-size: 1rem;">Senior Android Developer - Roam Digital Ltd</strong><br>
+                <span style="font-size: 0.8rem; color: #a78bfa; letter-spacing: 1px;">September 2021 - June 2022</span><br>
+                Worked across a range of FinTech projects for a leading APAC digital consultancy, enhancing app security, code quality, and integrating backend services.
+            </p>
+            <p style="margin-bottom: 1.5rem;">
+                <strong style="color: #ffffff; font-family: 'Playfair Display', serif; font-size: 1rem;">Senior Android Developer - Hud Studio / CnZ Tech Ltd</strong><br>
+                <span style="font-size: 0.8rem; color: #a78bfa; letter-spacing: 1px;">December 2018 - August 2021</span><br>
+                Maintained and scaled HudApp - a dating app with millions of users in 145 countries. Delivered in-app purchases, payment systems, localisation for 22 languages, and performance at scale.
+            </p>
+            <p>
+                <strong style="color: #ffffff; font-family: 'Playfair Display', serif; font-size: 1rem;">Android Developer - ImperialDigital Ltd / Electric Flamingo</strong><br>
+                <span style="font-size: 0.8rem; color: #a78bfa; letter-spacing: 1px;">August 2017 - December 2018</span><br>
+                Built Android applications from UI mockups for a B2B digital agency, integrating social login, maps, and REST APIs across multiple client projects.
+            </p>
+            </div>
+        </div>
+
+        <p class="section-label">Education &amp; Certifications</p>
+        <div class="skills-grid">
+            <div class="skill-box">
+                <h4>B.Sc. Computer Science</h4>
+                <p>Nazarbayev University, 2010–2015</p>
+            </div>
+            <div class="skill-box">
+                <h4>Grad. Diploma IT</h4>
+                <p>Aspire2 Tertiary Group, 2016–2017</p>
+            </div>
+            <div class="skill-box">
+                <h4>Certified Android Dev</h4>
+                <p>Android ATC &amp; IITP NZ Associate</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

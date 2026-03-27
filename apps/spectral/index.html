@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spectral — Wallpapers by Sulaco Digital</title>
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        body {
+            background-image: radial-gradient(ellipse 160% 70% at 50% 48%, #020105 0%, #0f0524 18%, #2a1565 35%, #5a35e6 55%, #9b6dff 72%, #d8c8ff 88%);
+        }
+
+        .store-buttons {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .store-buttons a img {
+            display: block;
+            height: 40px;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+
+        .store-buttons a img[alt*="Google"] {
+            height: 59px;
+            margin: -9.5px 0;
+        }
+
+        .store-buttons a:hover img { opacity: 1; }
+
+        /* Gallery */
+        .gallery-wrap {
+            padding: 0 5% 4rem 5%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .gallery-card {
+            background: rgba(8, 4, 20, 0.6);
+            border: 1px solid var(--glass-border-dark);
+            border-radius: 24px;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .gallery-scroll {
+            display: flex;
+            gap: 1.25rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 0.5rem;
+            scrollbar-width: none;
+        }
+
+        .gallery-scroll::-webkit-scrollbar { display: none; }
+
+        .gallery-scroll img {
+            width: 200px;
+            height: 360px;
+            flex-shrink: 0;
+            border-radius: 18px;
+            object-fit: cover;
+            object-position: top center;
+            scroll-snap-align: start;
+            opacity: 0.85;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .gallery-scroll img:hover {
+            opacity: 1;
+            transform: scale(1.02);
+        }
+
+        /* Features */
+        .spectral-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 0 5% 5rem 5%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(8, 4, 20, 0.6);
+            border: 1px solid var(--glass-border-dark);
+            border-radius: 20px;
+            padding: 2rem 1.75rem;
+            transition: border-color 0.2s;
+        }
+
+        .feature-card:hover { border-color: rgba(139, 92, 246, 0.4); }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            font-size: 0.85rem;
+            color: #9ca3af;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .spectral-features { grid-template-columns: 1fr 1fr; }
+            .gallery-scroll img { width: 160px; height: 290px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../../index.html" class="nav-logo">Sulaco Digital</a>
+        <ul class="nav-links">
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../index.html#portfolio">Portfolio</a></li>
+            <li><a href="../../blog.html">Blog</a></li>
+        </ul>
+        <a href="../../contact.html" class="nav-cta">CONTACT US</a>
+    </nav>
+
+    <div class="app-hero">
+        <div class="app-hero-content">
+            <p class="section-label">Wallpaper App</p>
+            <h1>Spectral</h1>
+            <p class="app-tagline">Your personal wallpaper universe. Discover thousands of stunning, hand-curated wallpapers updated every day — and make every screen uniquely yours.</p>
+            <div class="store-buttons">
+                <a href="#" target="_blank" rel="noopener">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+                </a>
+                <a href="#" target="_blank" rel="noopener">
+                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+                </a>
+            </div>
+        </div>
+        <div class="app-hero-visual">
+            <img src="../../frames/explore_dark.png" class="app-preview" alt="Spectral App">
+        </div>
+    </div>
+
+    <div class="gallery-wrap">
+        <div class="gallery-card">
+            <div class="gallery-scroll">
+                <img src="../../frames/collections_dark.png" alt="Collections">
+                <img src="../../frames/my_library_dark.png" alt="My Library">
+                <img src="../../frames/overlays_dark.png" alt="Overlays">
+                <img src="../../frames/background_generator.png" alt="Background Generator">
+                <img src="../../frames/image_editor_stripes.png" alt="Image Editor">
+                <img src="../../frames/explore_light.png" alt="Explore">
+            </div>
+        </div>
+    </div>
+
+    <div class="spectral-features">
+        <div class="feature-card">
+            <span class="feature-icon">&#x2728;</span>
+            <h4>Curated Daily</h4>
+            <p>New wallpapers added every day by our editorial team. Never run out of inspiration.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">&#x1F4F1;</span>
+            <h4>Made for Your Screen</h4>
+            <p>Every wallpaper is optimised for your exact device — pixel-perfect on any resolution.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">&#x1F5C2;</span>
+            <h4>Collections</h4>
+            <p>Browse by mood, colour, style, or season. Save favourites to your personal library.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">&#x1F3A8;</span>
+            <h4>Style Editor</h4>
+            <p>Add overlays, blur effects, and colour tints to make every wallpaper uniquely yours.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">&#x1F504;</span>
+            <h4>Auto Shuffle</h4>
+            <p>Let Spectral rotate your wallpaper automatically on a schedule you choose.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">&#x1F4F6;</span>
+            <h4>Works Offline</h4>
+            <p>Download your favourites and access them anywhere — no internet required.</p>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="../../index.html#portfolio">&larr; Back to Portfolio</a>
+    </div>
+
+</body>
+</html>

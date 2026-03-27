@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sulaco Digital — App Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-image: radial-gradient(ellipse 160% 70% at 50% 48%, #020105 0%, #0f0524 18%, #2a1565 35%, #5a35e6 55%, #9b6dff 72%, #d8c8ff 88%);
+        }
+
+        .glass-card {
+            background: rgba(8, 4, 20, 0.6);
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .glass-card h3 {
+            color: #ffffff;
+        }
+
+        .light-section {
+            color: #ffffff;
+        }
+
+        .coming-soon-text {
+            color: #e5e7eb;
+        }
+
+        .coming-soon-sub {
+            color: #9ca3af !important;
+        }
+
+        /* Spectral card: phone left, content right */
+        .spectral-card {
+            flex-direction: row;
+            align-items: stretch;
+            padding: 0;
+            overflow: hidden;
+            text-align: left;
+            min-height: 460px;
+        }
+
+        .portfolio-phone {
+            width: 36%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 6.5rem 2rem 6.5rem 15%;
+        }
+
+        .portfolio-phone img {
+            width: clamp(120px, 80%, 210px);
+            display: block;
+            border-radius: 24px 24px 0 0;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .portfolio-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.75rem;
+            padding: 3rem 3rem 3rem 1rem;
+            text-align: center;
+        }
+
+        .portfolio-content-top h3 {
+            font-size: 2.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .portfolio-content-top p {
+            color: #d1d5db;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+            max-width: 70%;
+            margin: 0 auto;
+        }
+
+        .portfolio-content-mid a.card-link {
+            display: inline-block;
+            padding: 0.65rem 2rem;
+            border: 1px solid rgba(139,92,246,0.45);
+            border-radius: 10px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .store-btns {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .store-btns a img {
+            display: block;
+            height: 40px;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+
+        /* Google Play badge has built-in whitespace — compensate visually */
+        .store-btns a img[alt*="Google"] {
+            height: 59px;
+            margin: -9.5px 0;
+        }
+
+        .store-btns a:hover img {
+            opacity: 1;
+        }
+
+        @media (max-width: 960px) {
+            .spectral-card { flex-direction: column; align-items: center; text-align: center; }
+            .portfolio-phone { width: auto; padding: 2.5rem 2rem 0; justify-content: center; }
+            .portfolio-phone img { width: clamp(120px, 45vw, 190px); }
+            .portfolio-content { padding: 2rem 2rem 2.5rem; }
+            .portfolio-content-top p { max-width: 90%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-logo">Sulaco Digital</a>
+        <ul class="nav-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="blog.html">Blog</a></li>
+        </ul>
+        <a href="contact.html" class="nav-cta">CONTACT US</a>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Crafting Innovative<br><span>Apps through Design</span></h1>
+            <p>Your vision, flawlessly executed. Secure, functional, and beautiful apps that connect and engage.</p>
+            <a href="#portfolio" class="cta-link">SEE OUR PORTFOLIO &rarr;</a>
+        </div>
+        <div class="hero-visuals">
+            <div class="carousel-wrap">
+                <div class="carousel-track" id="carouselTrack"></div>
+                <div class="carousel-dots" id="carouselDots"></div>
+            </div>
+        </div>
+    </header>
+
+    <section class="light-section" id="portfolio">
+        <h2>App Portfolio</h2>
+        <div class="cards-grid">
+            <div class="glass-card spectral-card">
+                <div class="portfolio-phone">
+                    <img src="frames/explore_dark.png" alt="Spectral">
+                </div>
+                <div class="portfolio-content">
+                    <div class="portfolio-content-top">
+                        <h3>Spectral</h3>
+                        <p>Discover a universe of stunning, curated wallpapers designed for your device. Fresh collections updated daily.</p>
+                    </div>
+                    <div class="portfolio-content-mid">
+                        <a href="apps/spectral/index.html" class="card-link">VIEW APP</a>
+                    </div>
+                    <div class="store-btns">
+                        <a href="#" target="_blank" rel="noopener">
+                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" height="40">
+                        </a>
+                        <a href="#" target="_blank" rel="noopener">
+                            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" height="40">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card" style="justify-content: center; align-items: center;">
+                <div class="coming-soon-wrap">
+                    <div class="coming-soon-badge">In Development</div>
+                    <div class="coming-soon-text">Coming<br><span>Soon</span></div>
+                    <p class="coming-soon-sub">Stay tuned for updates</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-footer">
+        <h2>Let's Build Something Great</h2>
+        <p>Invite us to collaborate with our seasoned developers, and let us find opportunities to exceed expectations.</p>
+
+        <div class="social-links" style="margin-top: 3rem;">
+            <a href="https://facebook.com" target="_blank" rel="noopener">f</a>
+            <a href="https://x.com" target="_blank" rel="noopener">x</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener">in</a>
+            <a href="https://youtube.com" target="_blank" rel="noopener">yt</a>
+        </div>
+    </section>
+
+    <script>
+        const images = [
+            'frames/explore_dark.png',
+            'frames/collections_dark.png',
+            'frames/my_library_dark.png',
+            'frames/overlays_dark.png',
+            'frames/background_generator.png',
+            'frames/image_editor_stripes.png',
+        ];
+
+        const track = document.getElementById('carouselTrack');
+        const dotsContainer = document.getElementById('carouselDots');
+        let current = 0;
+
+        images.forEach((src, i) => {
+            const img = document.createElement('img');
+            img.src = src;
+            img.className = 'carousel-slide';
+            img.alt = '';
+            track.appendChild(img);
+
+            const dot = document.createElement('button');
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            dot.addEventListener('click', () => goTo(i));
+            dotsContainer.appendChild(dot);
+        });
+
+        function goTo(idx) {
+            current = idx;
+            track.style.transform = 'translateX(-' + (idx * 300) + 'px)';
+            document.querySelectorAll('.carousel-dot').forEach((d, i) => {
+                d.classList.toggle('active', i === idx);
+            });
+        }
+
+        setInterval(() => goTo((current + 1) % images.length), 3000);
+    </script>
+
+</body>
+</html>
