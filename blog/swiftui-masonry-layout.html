@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a Custom Masonry Layout in SwiftUI | Sulaco Digital</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body {
+            background-image: radial-gradient(ellipse 160% 70% at 50% 48%, #020105 0%, #0f0524 18%, #2a1565 35%, #5a35e6 55%, #9b6dff 72%, #d8c8ff 88%);
+        }
+
+        .article-container {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 2rem 5% 6rem 5%;
+        }
+
+        .article-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #a78bfa;
+            text-decoration: none;
+            margin-bottom: 2.5rem;
+            transition: color 0.2s;
+        }
+
+        .article-back:hover { color: #7c3aed; }
+
+        .article-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #a78bfa;
+            border: 1px solid rgba(139, 92, 246, 0.35);
+            border-radius: 100px;
+            padding: 0.3rem 0.9rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            line-height: 1.2;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta {
+            font-size: 0.8rem;
+            color: #a78bfa;
+            letter-spacing: 0.5px;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .article-body {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            line-height: 1.85;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .article-body h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #ffffff;
+            margin: 2.5rem 0 1rem;
+        }
+
+        .article-body p { margin-bottom: 1.4rem; }
+
+        .article-body ul {
+            margin: 0 0 1.4rem 1.5rem;
+        }
+
+        .article-body li { margin-bottom: 0.5rem; }
+
+        .article-body strong { color: #ffffff; font-weight: 600; }
+
+        .article-body code {
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            border-radius: 5px;
+            padding: 0.15rem 0.45rem;
+            font-size: 0.88rem;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            color: #c4b5fd;
+        }
+
+        .article-body pre {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin-bottom: 1.4rem;
+        }
+
+        .article-body pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.88rem;
+            color: #e2d9f3;
+        }
+
+        .callout {
+            background: rgba(139, 92, 246, 0.08);
+            border-left: 3px solid #8b5cf6;
+            border-radius: 0 12px 12px 0;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.4rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.75);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html" class="nav-logo">Sulaco Digital</a>
+        <ul class="nav-links">
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../index.html#portfolio">Portfolio</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+        </ul>
+        <a href="mailto:admin@sulacodigital.com?subject=Project Inquiry" class="nav-cta">CONTACT US</a>
+    </nav>
+
+    <div class="article-container">
+
+        <a href="../blog.html" class="article-back">&larr; Back to Blog</a>
+
+        <span class="article-tag">SwiftUI</span>
+        <h1 class="article-title">Building a Custom Masonry Layout in SwiftUI</h1>
+        <p class="article-meta">February 12, 2026 &nbsp;·&nbsp; 5 min read</p>
+
+        <div class="article-body">
+
+            <p>The new <code>Layout</code> protocol in SwiftUI finally makes complex grid arrangements possible without reaching for UIKit. I built Spectral's wallpaper grid entirely with it — here's how, with annotated code.</p>
+
+            <h2>Why Not LazyVGrid?</h2>
+
+            <p>SwiftUI's built-in <code>LazyVGrid</code> with <code>.flexible()</code> columns gets you 80% of the way there. But it forces uniform row heights — every cell in a row is as tall as the tallest item. For a wallpaper app where images have different aspect ratios, this means either cropping everything to a square or leaving ugly whitespace gaps.</p>
+
+            <p>A masonry layout (like Pinterest's grid) places each item into the shortest column at the time of insertion, allowing variable heights while keeping columns balanced. Before SwiftUI's <code>Layout</code> protocol, you had to either use a <code>UICollectionView</code> compositional layout or manually calculate frames with <code>GeometryReader</code> hacks. Both approaches are verbose and fragile.</p>
+
+            <h2>The Layout Protocol in 60 Seconds</h2>
+
+            <p>The <code>Layout</code> protocol requires two methods:</p>
+
+            <ul>
+                <li><code>sizeThatFits(proposal:subviews:cache:)</code> — return the total size your layout needs</li>
+                <li><code>placeSubviews(in:proposal:subviews:cache:)</code> — position each child view</li>
+            </ul>
+
+            <p>SwiftUI calls these during layout passes. You get a <code>subviews</code> collection that lets you measure each child's ideal size before placing it. That's the key — you can ask "how tall would this image be if it were 180pt wide?" before you commit to placing it anywhere.</p>
+
+            <h2>The MasonryLayout Implementation</h2>
+
+            <pre><code>struct MasonryLayout: Layout {
+    var columns: Int
+    var spacing: CGFloat
+
+    func sizeThatFits(
+        proposal: ProposedViewSize,
+        subviews: Subviews,
+        cache: inout Void
+    ) -> CGSize {
+        let columnWidth = columnWidth(total: proposal.width ?? 0)
+        let heights = columnHeights(subviews: subviews, columnWidth: columnWidth)
+        return CGSize(
+            width: proposal.width ?? 0,
+            height: heights.max() ?? 0
+        )
+    }
+
+    func placeSubviews(
+        in bounds: CGRect,
+        proposal: ProposedViewSize,
+        subviews: Subviews,
+        cache: inout Void
+    ) {
+        let colWidth = columnWidth(total: bounds.width)
+        var colHeights = Array(repeating: bounds.minY, count: columns)
+
+        for subview in subviews {
+            let col = colHeights.indices.min(by: { colHeights[$0] < colHeights[$1] })!
+            let x = bounds.minX + CGFloat(col) * (colWidth + spacing)
+            let size = subview.sizeThatFits(.init(width: colWidth, height: nil))
+            subview.place(
+                at: CGPoint(x: x, y: colHeights[col]),
+                proposal: .init(width: colWidth, height: size.height)
+            )
+            colHeights[col] += size.height + spacing
+        }
+    }
+
+    private func columnWidth(total: CGFloat) -> CGFloat {
+        (total - spacing * CGFloat(columns - 1)) / CGFloat(columns)
+    }
+
+    private func columnHeights(subviews: Subviews, columnWidth: CGFloat) -> [CGFloat] {
+        var heights = Array(repeating: CGFloat(0), count: columns)
+        for subview in subviews {
+            let col = heights.indices.min(by: { heights[$0] < heights[$1] })!
+            let size = subview.sizeThatFits(.init(width: columnWidth, height: nil))
+            heights[col] += size.height + spacing
+        }
+        return heights
+    }
+}</code></pre>
+
+            <p>The core of it is the "shortest column first" strategy in <code>placeSubviews</code>: for each subview, find the column with the minimum accumulated height and place the item there. This keeps the columns balanced without needing to know image dimensions up front.</p>
+
+            <h2>Using It in a View</h2>
+
+            <pre><code>MasonryLayout(columns: 2, spacing: 12) {
+    ForEach(wallpapers) { wallpaper in
+        WallpaperCard(wallpaper: wallpaper)
+            .aspectRatio(wallpaper.aspectRatio, contentMode: .fit)
+    }
+}</code></pre>
+
+            <p>Each <code>WallpaperCard</code> declares its own aspect ratio, and the layout engine figures out the height from the column width. No manual size calculations anywhere in the view layer.</p>
+
+            <h2>Performance Considerations</h2>
+
+            <div class="callout">
+                The Layout protocol is not lazy — all subviews are measured before any are placed. For very large grids, wrap the layout in a <code>ScrollView</code> with <code>LazyVStack</code> chunking rather than passing thousands of subviews directly.
+            </div>
+
+            <p>Spectral pages its wallpaper grid in batches of 40. Each batch is a separate <code>MasonryLayout</code> inside a <code>LazyVStack</code>, which gives you lazy loading at the batch level while keeping the masonry algorithm simple and stateless within each batch.</p>
+
+            <h2>The Result</h2>
+
+            <p>The final grid looks exactly like a native photo grid — variable heights, balanced columns, no cropping. And the implementation is under 60 lines of Swift with no UIKit bridging. The <code>Layout</code> protocol is one of the best additions to SwiftUI in recent years, and masonry is the perfect use case to demonstrate why.</p>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

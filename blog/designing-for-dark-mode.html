@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designing for Dark Mode: What I Learned Building Spectral | Sulaco Digital</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body {
+            background-image: radial-gradient(ellipse 160% 70% at 50% 48%, #020105 0%, #0f0524 18%, #2a1565 35%, #5a35e6 55%, #9b6dff 72%, #d8c8ff 88%);
+        }
+
+        .article-container {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 2rem 5% 6rem 5%;
+        }
+
+        .article-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #a78bfa;
+            text-decoration: none;
+            margin-bottom: 2.5rem;
+            transition: color 0.2s;
+        }
+
+        .article-back:hover { color: #7c3aed; }
+
+        .article-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #a78bfa;
+            border: 1px solid rgba(139, 92, 246, 0.35);
+            border-radius: 100px;
+            padding: 0.3rem 0.9rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            line-height: 1.2;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta {
+            font-size: 0.8rem;
+            color: #a78bfa;
+            letter-spacing: 0.5px;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .article-body {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            line-height: 1.85;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .article-body h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #ffffff;
+            margin: 2.5rem 0 1rem;
+        }
+
+        .article-body p { margin-bottom: 1.4rem; }
+
+        .article-body ul {
+            margin: 0 0 1.4rem 1.5rem;
+        }
+
+        .article-body li { margin-bottom: 0.5rem; }
+
+        .article-body strong { color: #ffffff; font-weight: 600; }
+
+        .article-body code {
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            border-radius: 5px;
+            padding: 0.15rem 0.45rem;
+            font-size: 0.88rem;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            color: #c4b5fd;
+        }
+
+        .article-body pre {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin-bottom: 1.4rem;
+        }
+
+        .article-body pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.88rem;
+            color: #e2d9f3;
+        }
+
+        .callout {
+            background: rgba(139, 92, 246, 0.08);
+            border-left: 3px solid #8b5cf6;
+            border-radius: 0 12px 12px 0;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.4rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.75);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html" class="nav-logo">Sulaco Digital</a>
+        <ul class="nav-links">
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../index.html#portfolio">Portfolio</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+        </ul>
+        <a href="mailto:admin@sulacodigital.com?subject=Project Inquiry" class="nav-cta">CONTACT US</a>
+    </nav>
+
+    <div class="article-container">
+
+        <a href="../blog.html" class="article-back">&larr; Back to Blog</a>
+
+        <span class="article-tag">Design</span>
+        <h1 class="article-title">Designing for Dark Mode: What I Learned Building Spectral</h1>
+        <p class="article-meta">March 18, 2026 &nbsp;·&nbsp; 8 min read</p>
+
+        <div class="article-body">
+
+            <p>Dark mode isn't just about flipping a colour palette. When I started building Spectral, I assumed it would be a two-hour task. Six weeks later, I had a completely rethought approach to colour, contrast, and depth that changed the way I design for mobile. Here's everything I wish I'd known before I started.</p>
+
+            <h2>The Naive Approach (and Why It Fails)</h2>
+
+            <p>My first attempt was exactly what you'd expect: take every light colour, invert it, done. White backgrounds became near-black. Dark text became near-white. I shipped it to a handful of TestFlight users and within 48 hours the feedback was unanimous — it looked harsh, clinical, and nothing like the premium feel I was going for.</p>
+
+            <p>The problem is that <strong>human perception isn't linear</strong>. A white card on a light grey background creates a subtle sense of elevation. Invert that and you get a black card on a slightly-lighter-black background — and the depth completely disappears. Your eye needs different signals in dark environments.</p>
+
+            <div class="callout">
+                "A good dark mode doesn't feel like a light mode that had the lights turned off. It feels like it was designed in the dark."
+            </div>
+
+            <h2>Elevation Through Lightness, Not Shadow</h2>
+
+            <p>In Material Design's dark theme guidelines, Google documents something counter-intuitive: in dark mode, elevated surfaces should be <em>lighter</em>, not darker. A card that floats above the background should use a slightly higher lightness value — maybe <code>#1e1e2e</code> against a base of <code>#12121f</code>.</p>
+
+            <p>This mirrors how light actually works. In a dark room, objects closer to a light source pick up more of that light. Depth means brightness, not shadow.</p>
+
+            <p>For Spectral I ended up with a four-level elevation system:</p>
+
+            <ul>
+                <li><strong>Level 0 (background):</strong> <code>#0d0d1a</code></li>
+                <li><strong>Level 1 (cards):</strong> <code>#161626</code> — +5% lightness</li>
+                <li><strong>Level 2 (modals):</strong> <code>#1e1e32</code> — +10% lightness</li>
+                <li><strong>Level 3 (tooltips, menus):</strong> <code>#26263e</code> — +15% lightness</li>
+            </ul>
+
+            <p>The differences are subtle. That's the point. If a user consciously notices the layers, the gradation is too aggressive.</p>
+
+            <h2>Colour Saturation in Dark Contexts</h2>
+
+            <p>The purple accent (<code>#8b5cf6</code>) I use throughout Spectral was born in a light-mode prototype. Dropped into a dark background, it screamed. The solution isn't to desaturate — that kills vibrancy — it's to reduce <em>chroma</em> while preserving hue.</p>
+
+            <p>Working in the OKLCH colour space made this straightforward. Instead of adjusting HSL sliders and eyeballing the result, I could dial the C (chroma) value down incrementally while keeping L and H fixed. The result: a purple that still reads as purple, but doesn't assault the eyes at 2am.</p>
+
+            <h2>Text Contrast: The 4.5:1 Trap</h2>
+
+            <p>WCAG AA requires 4.5:1 contrast for normal text. This is a floor, not a target. On a dark background, pure white at 21:1 contrast is technically correct and visually exhausting. I settled on three text levels:</p>
+
+            <ul>
+                <li><strong>Primary:</strong> <code>rgba(255,255,255,0.92)</code> — headers, labels</li>
+                <li><strong>Secondary:</strong> <code>rgba(255,255,255,0.65)</code> — body copy, descriptions</li>
+                <li><strong>Tertiary:</strong> <code>rgba(255,255,255,0.38)</code> — placeholders, disabled states</li>
+            </ul>
+
+            <p>This hierarchy creates reading comfort and conveys importance simultaneously. Primary text draws the eye; secondary text is readable without demanding attention.</p>
+
+            <h2>Testing in Real Conditions</h2>
+
+            <p>The single most valuable thing I did was test Spectral in actual dark conditions — bedroom at night, not a bright office at noon. A palette that looks balanced in Figma on a calibrated display can look entirely different on a phone screen in low ambient light.</p>
+
+            <p>I also tested with brightness at 20% (common at night) and 100% (outdoors). Some colour combinations that passed contrast checks at full brightness became illegible at low brightness. WCAG guidelines don't account for this — you have to test it manually.</p>
+
+            <h2>The Takeaway</h2>
+
+            <p>Dark mode is a first-class design problem, not an afterthought. The apps that get it right — Things, Linear, Raycast — share one thing in common: their dark mode looks like it was designed in the dark, from scratch, not like a light mode that got inverted.</p>
+
+            <p>For Spectral, the six weeks I spent on this turned out to be some of the highest-leverage design work in the project. Users don't comment on the elevation system or the OKLCH colour adjustments. They just say it feels polished. That's the goal.</p>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
