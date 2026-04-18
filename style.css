@@ -27,9 +27,11 @@ body {
     margin: 0;
     font-family: "Helvetica Neue", Arial, sans-serif;
     color: #ffffff;
-    background-color: #020105;
-    background-image: radial-gradient(ellipse 160% 70% at 50% 48%, #ffffff 15%, #5a35e6 45%, #0f0524 75%, #020105 100%);
+    background-color: #0d0820;
+    background-image: radial-gradient(ellipse 160% 70% at 50% 48%, #ffffff 15%, #5a35e6 45%, #150d35 75%, #0d0820 100%);
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
     min-height: 100vh;
 }
 
