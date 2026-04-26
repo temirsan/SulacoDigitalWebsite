@@ -26,6 +26,7 @@
     .hero-a .stack .device-shot {
       position: absolute;
       border-radius: 44px;
+      transition: opacity 0.6s ease;
     }
     .hero-a .stack .d1 {
       width: 260px;
@@ -342,16 +343,24 @@
       const front = document.getElementById('heroPhoneFront');
       const back = document.getElementById('heroPhoneBack');
       if (!front || !back) return;
+      const FADE_MS = 600;
+      const HOLD_MS = 4200;
       let i = 0;
       setInterval(() => {
-        i = (i + 1) % SCREENS.length;
-        const next = SCREENS[(i + 1) % SCREENS.length];
-        const cur = SCREENS[i];
-        back.src = next.src;
-        back.alt = '';
-        front.src = cur.src;
-        front.alt = cur.caption;
-      }, 3500);
+        front.style.opacity = '0';
+        back.style.opacity = '0';
+        setTimeout(() => {
+          i = (i + 1) % SCREENS.length;
+          const next = SCREENS[(i + 1) % SCREENS.length];
+          const cur = SCREENS[i];
+          back.src = next.src;
+          back.alt = '';
+          front.src = cur.src;
+          front.alt = cur.caption;
+          front.style.opacity = '1';
+          back.style.opacity = '1';
+        }, FADE_MS);
+      }, HOLD_MS);
     })();
   </script>
 
