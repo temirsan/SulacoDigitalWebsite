@@ -1,184 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | Sulaco Digital</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            background-image: radial-gradient(ellipse 160% 70% at 50% 48%, #020105 0%, #0f0524 18%, #2a1565 35%, #5a35e6 55%, #9b6dff 72%, #d8c8ff 88%);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - Sulaco Digital</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    .blog-hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 5% 3rem;
+    }
+    .blog-hero .mono { display: block; margin-bottom: 1rem; }
+    .blog-hero h1 {
+      font-size: clamp(2.5rem, 5.4vw, 4.4rem);
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      max-width: 18ch;
+    }
+    .blog-hero h1 em { font-style: italic; color: var(--fg-dim); font-weight: 300; }
+    .blog-hero .sub {
+      color: var(--fg-dim);
+      font-size: 1.05rem;
+      line-height: 1.55;
+      max-width: 56ch;
+      margin-top: 1.25rem;
+    }
 
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 2rem;
-            padding: 2rem 5% 6rem 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .blog-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 5% 5rem;
+    }
 
-        .blog-card {
-            background: var(--glass-bg-dark);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border-dark);
-            border-radius: 24px;
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            transition: border-color 0.2s;
-        }
+    .featured-post {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-bottom: 3rem;
+      overflow: hidden;
+      min-height: 380px;
+    }
 
-        .blog-card:hover {
-            border-color: rgba(139, 92, 246, 0.4);
-        }
+    .featured-media {
+      background:
+        radial-gradient(ellipse 100% 100% at 30% 30%,
+          oklch(42% 0.2 var(--accent-h) / 0.6),
+          transparent 65%),
+        linear-gradient(135deg, oklch(20% 0.03 280), oklch(10% 0.02 280));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .featured-media::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(90deg,
+          transparent 0, transparent 40px,
+          oklch(90% 0.02 280 / 0.03) 40px, oklch(90% 0.02 280 / 0.03) 41px);
+    }
+    .featured-media .glyph {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--fg-dim);
+      letter-spacing: 0.08em;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .featured-media .glyph .big {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      color: var(--fg);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .featured-media .glyph .big em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent-hi);
+    }
 
-        .blog-tag {
-            display: inline-block;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #a78bfa;
-            border: 1px solid rgba(139, 92, 246, 0.35);
-            border-radius: 100px;
-            padding: 0.3rem 0.9rem;
-            align-self: flex-start;
-        }
+    .featured-body {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .featured-body .tags {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+    }
+    .tag-pill {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-hi);
+      background: var(--accent-soft);
+      padding: 0.3rem 0.7rem;
+      border-radius: 100px;
+    }
+    .tag-pill.ghost {
+      color: var(--fg-mute);
+      background: transparent;
+      border: 1px solid var(--border);
+    }
+    .featured-body h2 {
+      font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    .featured-body p {
+      color: var(--fg-dim);
+      line-height: 1.55;
+      font-size: 0.98rem;
+    }
+    .featured-body .meta {
+      display: flex;
+      gap: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--fg-mute);
+      letter-spacing: 0.05em;
+      align-items: center;
+    }
+    .featured-body .meta span + span::before {
+      content: "·";
+      margin-right: 1rem;
+      color: var(--fg-mute);
+    }
+    .read-link {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--fg);
+      text-decoration: none;
+      margin-top: 0.5rem;
+      align-self: flex-start;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 0.2rem;
+      transition: color 0.2s;
+    }
+    .read-link:hover { color: var(--accent-hi); }
 
-        .blog-card h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            line-height: 1.3;
-            font-weight: 400;
-        }
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1rem;
+    }
 
-        .blog-card .blog-excerpt {
-            font-size: 0.9rem;
-            color: #ffffff;
-            line-height: 1.7;
-            flex: 1;
-        }
+    .post-card {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: border-color 0.2s, transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .post-card:hover {
+      border-color: var(--border-2);
+      transform: translateY(-2px);
+    }
+    .post-card .idx {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--fg-mute);
+      letter-spacing: 0.1em;
+    }
+    .post-card h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    .post-card p {
+      color: var(--fg-dim);
+      font-size: 0.9rem;
+      line-height: 1.55;
+      flex: 1;
+    }
+    .post-card .meta {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--fg-mute);
+      letter-spacing: 0.06em;
+      display: flex; gap: 1rem; align-items: center;
+    }
 
-        .blog-meta {
-            font-size: 0.75rem;
-            color: #a78bfa;
-            letter-spacing: 0.5px;
-        }
-
-        .blog-read-more {
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            color: #a78bfa;
-            text-decoration: none;
-            transition: color 0.2s;
-            align-self: flex-start;
-            margin-top: 0.25rem;
-        }
-
-        .blog-read-more:hover {
-            color: #7c3aed;
-        }
-
-        .blog-card.featured {
-            grid-column: 1 / -1;
-            flex-direction: row;
-            align-items: flex-start;
-            gap: 3rem;
-        }
-
-        .blog-card.featured .blog-card-body {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .blog-card.featured h2 {
-            font-size: 2rem;
-        }
-
-        .blog-featured-label {
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #d1d5db;
-        }
-
-        .featured-accent {
-            width: 3px;
-            align-self: stretch;
-            background: linear-gradient(to bottom, #8b5cf6, transparent);
-            border-radius: 3px;
-            flex-shrink: 0;
-        }
-
-        @media (max-width: 768px) {
-            .blog-card.featured {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-            .featured-accent {
-                width: auto;
-                height: 3px;
-                align-self: stretch;
-                background: linear-gradient(to right, #8b5cf6, transparent);
-            }
-        }
-    </style>
+    @media (max-width: 820px) {
+      .featured-post { grid-template-columns: 1fr; min-height: 0; }
+      .featured-media { min-height: 240px; padding: 2rem; }
+    }
+  </style>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html" class="nav-logo">Sulaco Digital</a>
-        <ul class="nav-links">
-            <li><a href="about.html">About</a></li>
-            <li><a href="index.html#portfolio">Portfolio</a></li>
-            <li><a href="blog.html">Blog</a></li>
-        </ul>
-        <a href="mailto:admin@sulacodigital.com?subject=Project Inquiry" class="nav-cta">CONTACT US</a>
-    </nav>
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-mark"></span>
+      <span>Sulaco Digital</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="index.html#portfolio">Portfolio</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+    </ul>
+    <a href="mailto:admin@sulacodigital.com?subject=Project Inquiry" class="nav-cta">
+      <span class="dot"></span>
+      Let's talk
+    </a>
+  </nav>
 
-    <div class="page-hero">
-        <h1>Developer <span>Blog</span></h1>
-        <p>Thoughts on Android development, app design, and building things worth using.</p>
+  <div class="blog-hero">
+    <span class="mono">Writing</span>
+    <h1>Things I've learned<br><em>the hard way.</em></h1>
+    <p class="sub">
+      Notes on Android development, indie shipping, and building the kind of
+      software I'd actually want to use. Occasionally opinionated.
+    </p>
+  </div>
+
+  <div class="blog-wrap">
+
+    <article class="panel featured-post">
+      <div class="featured-media">
+        <div class="glyph">
+          <span class="big">Dark mode,<br><em>properly.</em></span>
+          Case study · Spectral
+        </div>
+      </div>
+      <div class="featured-body">
+        <div class="tags">
+          <span class="tag-pill">Featured</span>
+          <span class="tag-pill ghost">Design</span>
+        </div>
+        <h2>Designing for dark mode: what I learned building Spectral</h2>
+        <p>
+          Dark mode isn't just flipping a colour palette. When I started Spectral I
+          assumed it'd take two hours. Six weeks later, I had a completely rethought
+          approach to colour, contrast, and depth that changed the way I design for
+          Android.
+        </p>
+        <div class="meta">
+          <span>Mar 18, 2026</span>
+          <span>8 min read</span>
+        </div>
+        <a href="blog/designing-for-dark-mode.html" class="read-link">Read the full piece →</a>
+      </div>
+    </article>
+
+    <div class="posts-grid">
+      <a href="#" class="panel post-card">
+        <span class="tag-pill" style="align-self:flex-start;">Kotlin</span>
+        <h3>Why I Chose Coroutines Over RxJava (Finally)</h3>
+        <p>Rx felt like the obvious choice when I started building Spectral's networking. Twelve months later I rewrote the whole layer with Flow and never looked back. Here's the honest comparison.</p>
+        <div class="meta">
+          <span>Feb 28, 2026</span>
+          <span>·</span>
+          <span>6 min</span>
+        </div>
+      </a>
+      <a href="#" class="panel post-card">
+        <span class="tag-pill" style="align-self:flex-start;">Compose</span>
+        <h3>Building a Custom Masonry Layout in Jetpack Compose</h3>
+        <p>Compose's Layout composable finally makes complex grid arrangements possible without dropping to Views. I built Spectral's wallpaper grid entirely with it - here's how.</p>
+        <div class="meta">
+          <span>Feb 12, 2026</span>
+          <span>·</span>
+          <span>5 min</span>
+        </div>
+      </a>
+      <a href="#" class="panel post-card">
+        <span class="tag-pill" style="align-self:flex-start;">Indie</span>
+        <h3>What It's Actually Like Shipping Solo</h3>
+        <p>I'm a senior engineer at my day job. I thought building an indie app would be easy. Reader, it was not. A field report on design, marketing, and the empty feedback loop.</p>
+        <div class="meta">
+          <span>Jan 20, 2026</span>
+          <span>·</span>
+          <span>9 min</span>
+        </div>
+      </a>
+      <a href="#" class="panel post-card">
+        <span class="tag-pill" style="align-self:flex-start;">Performance</span>
+        <h3>Debugging a Memory Leak That Wasn't There</h3>
+        <p>LeakCanary pointed fingers. The Android Profiler disagreed. After three days I realized we were both wrong - and the bug was in something I'd trusted for years.</p>
+        <div class="meta">
+          <span>Dec 14, 2025</span>
+          <span>·</span>
+          <span>7 min</span>
+        </div>
+      </a>
     </div>
+  </div>
 
-    <div class="blog-grid">
-
-        <!-- Featured post -->
-        <div class="blog-card featured">
-            <div class="featured-accent"></div>
-            <div class="blog-card-body">
-                <span class="blog-featured-label">Featured Post</span>
-                <span class="blog-tag">Design</span>
-                <h2>Designing for Dark Mode: What I Learned Building Spectral</h2>
-                <p class="blog-excerpt">Dark mode isn't just about flipping a colour palette. When I started building Spectral, I assumed it would be a two-hour task. Six weeks later, I had a completely rethought approach to colour, contrast, and depth that changed the way I design for iOS. Here's everything I wish I'd known before I started.</p>
-                <span class="blog-meta">March 18, 2026 &nbsp;·&nbsp; 8 min read</span>
-                <a href="blog/designing-for-dark-mode.html" class="blog-read-more">READ MORE &rarr;</a>
-            </div>
-        </div>
-
-        <!-- Post 2 -->
-        <div class="blog-card">
-            <span class="blog-tag">Swift</span>
-            <h2>Why I Chose Swift Concurrency Over Combine</h2>
-            <p class="blog-excerpt">Combine felt like the obvious choice when I started building async networking for Spectral. Twelve months later I rewrote the whole layer using async/await and never looked back. Here's the honest comparison.</p>
-            <span class="blog-meta">February 28, 2026 &nbsp;·&nbsp; 6 min read</span>
-            <a href="blog/swift-concurrency-vs-combine.html" class="blog-read-more">READ MORE &rarr;</a>
-        </div>
-
-        <!-- Post 3 -->
-        <div class="blog-card">
-            <span class="blog-tag">SwiftUI</span>
-            <h2>Building a Custom Masonry Layout in SwiftUI</h2>
-            <p class="blog-excerpt">The new Layout protocol in SwiftUI finally makes complex grid arrangements possible without reaching for UIKit. I built Spectral's wallpaper grid entirely with it, here's how, with annotated code.</p>
-            <span class="blog-meta">February 12, 2026 &nbsp;·&nbsp; 5 min read</span>
-            <a href="blog/swiftui-masonry-layout.html" class="blog-read-more">READ MORE &rarr;</a>
-        </div>
-
+  <footer class="site-footer">
+    <div>
+      <div class="footer-brand">Sulaco Digital</div>
+      <div class="footer-brand-sub">
+        Independent Android studio. Auckland, NZ.
+      </div>
+      <div class="socials">
+        <a href="#" target="_blank" rel="noopener" aria-label="twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" target="_blank" rel="noopener" aria-label="linkedin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.268 2.37 4.268 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg></a>
+        <a href="#" target="_blank" rel="noopener" aria-label="github"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+        <a href="#" target="_blank" rel="noopener" aria-label="youtube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
     </div>
+    <div>
+      <h4>Site</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="blog.html">Blog</a>
+    </div>
+    <div>
+      <h4>Apps</h4>
+      <a href="apps/spectral/index.html">Spectral</a>
+      <a href="#">Impulse Reader</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="mailto:admin@sulacodigital.com">admin@sulacodigital.com</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Sulaco Digital</span>
+      <span>Handcrafted in Auckland</span>
+    </div>
+  </footer>
 
 </body>
 </html>

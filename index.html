@@ -1,233 +1,359 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sulaco Digital | App Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            background-image: radial-gradient(ellipse 160% 70% at 50% 48%, #020105 0%, #0f0524 18%, #2a1565 35%, #5a35e6 55%, #9b6dff 72%, #d8c8ff 88%);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sulaco Digital - Independent Android Studio</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <style>
+    /* Hero variant: typographic-led */
+    .hero-a h1 .stroke {
+      -webkit-text-stroke: 1px var(--fg-dim);
+      -webkit-text-fill-color: transparent;
+      font-style: italic;
+      font-weight: 400;
+    }
+    .hero-a .hero-visuals {
+      justify-content: center;
+      position: relative;
+      min-height: 620px;
+    }
+    .hero-a .stack {
+      position: relative;
+      width: 440px;
+      height: 620px;
+    }
+    .hero-a .stack .device-shot {
+      position: absolute;
+      border-radius: 44px;
+    }
+    .hero-a .stack .d1 {
+      width: 260px;
+      left: 0; top: 30px;
+      filter:
+        drop-shadow(0 30px 50px oklch(10% 0.02 280 / 0.7))
+        drop-shadow(0 0 60px oklch(40% 0.22 var(--accent-h) / 0.35));
+    }
+    .hero-a .stack .d2 {
+      width: 260px;
+      right: 0; bottom: 0;
+      filter:
+        drop-shadow(0 40px 70px oklch(10% 0.02 280 / 0.8))
+        drop-shadow(0 0 80px oklch(40% 0.22 var(--accent-h) / 0.55));
+      z-index: 2;
+    }
+    .hero-a .accent-blob {
+      position: absolute;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-soft) 0%, transparent 65%);
+      filter: blur(50px);
+      z-index: 0;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    @media (max-width: 960px) {
+      .hero-a .hero-visuals { min-height: 520px; }
+      .hero-a .stack { width: 360px; height: 520px; }
+      .hero-a .stack .d1, .hero-a .stack .d2 { width: 210px; }
+    }
 
-        .glass-card {
-            background: rgba(8, 4, 20, 0.6);
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-            border-color: rgba(255, 255, 255, 0.12);
-        }
-
-        .glass-card h3 {
-            color: #ffffff;
-        }
-
-        .light-section {
-            color: #ffffff;
-        }
-
-        .coming-soon-text {
-            color: #e5e7eb;
-        }
-
-        .coming-soon-sub {
-            color: #9ca3af !important;
-        }
-
-        .spectral-card {
-            display: grid;
-            grid-template-columns: 2fr 3fr;
-            align-items: stretch;
-            padding: 0;
-            overflow: hidden;
-            min-height: 460px;
-        }
-
-        .card-phone {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2.5rem 1.5rem;
-        }
-
-        .card-phone img {
-            max-width: 210px;
-            width: 80%;
-            display: block;
-            border-radius: 24px 24px 0 0;
-            object-fit: cover;
-            object-position: top;
-        }
-
-        .card-body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1.75rem;
-            padding: 3rem;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .card-body h3 {
-            font-size: 2.2rem;
-            margin: 0;
-        }
-
-        .card-body > p {
-            color: #d1d5db;
-            line-height: 1.6;
-            max-width: 72%;
-            margin: 0;
-        }
-
-        .card-body .card-link {
-            padding: 0.65rem 2rem;
-            border: 1px solid rgba(139,92,246,0.45);
-            border-radius: 10px;
-        }
-
-        .store-btns {
-            display: flex;
-            gap: 0.75rem;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .store-btns a img {
-            display: block;
-            height: 40px;
-            opacity: 0.9;
-            transition: opacity 0.2s;
-        }
-
-        /* Google Play badge has built-in whitespace, compensate visually */
-        .store-btns a img[alt*="Google"] {
-            height: 59px;
-            margin: -9.5px 0;
-        }
-
-        .store-btns a:hover img { opacity: 1; }
-
-        @media (max-width: 960px) {
-            .spectral-card { grid-template-columns: 1fr; }
-            .card-phone { padding: 2rem 2rem 0; }
-            .card-phone img { max-width: 190px; width: 45vw; }
-            .card-body { padding: 2rem; }
-            .card-body > p { max-width: 90%; }
-        }
-    </style>
+    /* Stats row below hero */
+    .hero-stats {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 5% 4rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .stat-cell {
+      padding: 1.25rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .stat-cell .num {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      color: var(--fg);
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+    .stat-cell .lbl {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--fg-mute);
+    }
+    @media (max-width: 700px) {
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
 </head>
 <body>
 
-    <nav>
-        <a href="index.html" class="nav-logo">Sulaco Digital</a>
-        <ul class="nav-links">
-            <li><a href="about.html">About</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="blog.html">Blog</a></li>
-        </ul>
-        <a href="mailto:admin@sulacodigital.com?subject=Project Inquiry" class="nav-cta">CONTACT US</a>
-    </nav>
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-mark"></span>
+      <span>Sulaco Digital</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="about.html">About</a></li>
+      <li><a href="index.html#portfolio" class="active">Portfolio</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+    <a href="mailto:admin@sulacodigital.com?subject=Project Inquiry" class="nav-cta">
+      <span class="dot"></span>
+      Let's talk
+    </a>
+  </nav>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1>Android engineer.<br><span>Independent app developer.</span></h1>
-            <p>8 years building mobile apps used by millions. Sulaco Digital is where I build things for myself.</p>
-            <a href="#portfolio" class="cta-link">SEE MY WORK &rarr;</a>
+  <section class="hero hero-a">
+    <div>
+      <div class="hero-eyebrow">
+        <span class="pulse"></span>
+        Available for collaborations · Q2 2026
+      </div>
+      <h1>
+        I build Android apps<br>
+        <span class="stroke">nobody asked for</span><br>
+        <span class="accent">but everyone wants.</span>
+      </h1>
+      <p class="hero-lede">
+        Hi, I'm Temir - a senior Android engineer moonlighting as an indie studio.
+        Eight years shipping to millions. Now I'm building the things I wish existed.
+      </p>
+      <div class="hero-actions">
+        <a href="#portfolio" class="btn btn-primary">See the apps →</a>
+        <a href="about.html" class="btn btn-ghost">About me</a>
+      </div>
+      <div class="hero-meta">
+        <div>
+          <strong>8 yrs</strong>
+          <span>in the trenches</span>
         </div>
-        <div class="hero-visuals">
-            <div class="carousel-wrap">
-                <div class="carousel-track" id="carouselTrack"></div>
-                <div class="carousel-dots" id="carouselDots"></div>
+        <div>
+          <strong>145</strong>
+          <span>countries shipped to</span>
+        </div>
+        <div>
+          <strong>∞</strong>
+          <span>coffee consumed</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visuals">
+      <div class="accent-blob"></div>
+      <div class="stack">
+        <img class="device-shot d1" id="heroPhoneBack" src="frames/collections_dark.png" alt="">
+        <img class="device-shot d2" id="heroPhoneFront" src="frames/explore_dark.png" alt="Explore">
+      </div>
+    </div>
+  </section>
+
+  <div class="hero-stats">
+    <div class="stat-cell">
+      <span class="num">8 yrs</span>
+      <span class="lbl">Shipping Android</span>
+    </div>
+    <div class="stat-cell">
+      <span class="num">22</span>
+      <span class="lbl">Languages localized</span>
+    </div>
+    <div class="stat-cell">
+      <span class="num">145</span>
+      <span class="lbl">Countries reached</span>
+    </div>
+    <div class="stat-cell">
+      <span class="num">1M+</span>
+      <span class="lbl">Users served</span>
+    </div>
+  </div>
+
+  <section class="section" id="portfolio">
+    <div class="section-head">
+      <div>
+        <span class="mono">The work</span>
+        <h2>Apps I've shipped<br>for myself.</h2>
+      </div>
+      <p class="sub">
+        Built, designed, shipped, and maintained solo. No roadmaps, no standups,
+        no design-by-committee. Just the things I want to exist.
+      </p>
+    </div>
+
+    <div class="portfolio-grid">
+      <article class="panel app-card">
+        <div class="app-card-media">
+          <div class="app-card-stack">
+            <img class="shot-left" src="frames/overlays_dark.png" alt="">
+            <img class="shot-right" src="frames/collections_dark.png" alt="">
+            <img class="shot-main" src="frames/explore_dark.png" alt="Spectral explore">
+          </div>
+        </div>
+        <div class="app-card-body">
+          <div>
+            <span class="tag">Wallpapers · Utilities</span>
+            <h3>Spectral</h3>
+            <p>
+              Your wallpaper, your rules. Generate, layer, and apply one-of-a-kind
+              backgrounds built around your taste - not someone else's moodboard.
+            </p>
+            <div class="app-card-metrics">
+              <div class="app-card-metric">
+                <span class="mval">Android</span>
+                <span class="mkey">Platform</span>
+              </div>
+              <div class="app-card-metric">
+                <span class="mval">Kotlin · Compose</span>
+                <span class="mkey">Stack</span>
+              </div>
+              <div class="app-card-metric">
+                <span class="mval">In beta</span>
+                <span class="mkey">Status</span>
+              </div>
             </div>
-        </div>
-    </header>
-
-    <section class="light-section" id="portfolio">
-        <h2>App Portfolio</h2>
-        <div class="cards-grid">
-            <div class="glass-card spectral-card">
-                <div class="card-phone">
-                    <img src="frames/explore_dark.png" alt="Spectral">
+          </div>
+          <div class="app-card-foot">
+            <div class="store-row">
+              <a href="#" class="store-badge" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.88-3.08.41-1.09-.47-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.41C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+                <div>
+                  <span class="sm">Download on</span>
+                  <span class="lg">App Store</span>
                 </div>
-                <div class="card-body">
-                    <h3>Spectral</h3>
-                    <p>Your wallpaper, your rules. Generate, layer, and apply one-of-a-kind backgrounds built around your style, not someone else's.</p>
-                    <a href="apps/spectral/index.html" class="card-link">VIEW APP</a>
-                    <div class="store-btns">
-                        <a href="#" target="_blank" rel="noopener">
-                            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" height="40">
-                        </a>
-                        <a href="#" target="_blank" rel="noopener">
-                            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" height="40">
-                        </a>
-                    </div>
+              </a>
+              <a href="https://play.google.com/store/apps/details?id=com.sulaco.digital.spectral" class="store-badge" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.302 2.302-8.636-8.634z"/></svg>
+                <div>
+                  <span class="sm">Get it on</span>
+                  <span class="lg">Google Play</span>
                 </div>
+              </a>
             </div>
-            <div class="glass-card" style="justify-content: center; align-items: center;">
-                <div class="coming-soon-wrap">
-                    <div class="coming-soon-badge">In Development</div>
-                    <div class="coming-soon-text">Coming<br><span>Soon</span></div>
-                    <p class="coming-soon-sub">Stay tuned for updates</p>
-                </div>
-            </div>
+            <a href="apps/spectral/index.html" class="btn btn-ghost" style="align-self:flex-start;">
+              Case study →
+            </a>
+          </div>
         </div>
-    </section>
+      </article>
 
-    <section class="stats-footer">
-        <h2>Get in touch</h2>
-        <p>Questions about one of my apps, or just want to talk Android? Reach me at admin@sulacodigital.com</p>
-
-        <div class="social-links" style="margin-top: 3rem;">
-            <a href="https://facebook.com" target="_blank" rel="noopener">f</a>
-            <a href="https://x.com" target="_blank" rel="noopener">x</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener">in</a>
-            <a href="https://youtube.com" target="_blank" rel="noopener">yt</a>
+      <article class="panel teaser-card">
+        <div>
+          <div class="teaser-badge">
+            <span class="blink"></span>
+            In the lab
+          </div>
+          <div class="teaser-headline" style="margin-top:1.25rem;">
+            Something <em>quiet,</em><br>
+            something <em>sharp.</em>
+          </div>
         </div>
-    </section>
+        <div class="teaser-hints">
+          <div class="row">
+            <span class="key">Codename</span>
+            <span class="val">Impulse Reader</span>
+          </div>
+          <div class="row">
+            <span class="key">Category</span>
+            <span class="val">Reader · Focus</span>
+          </div>
+          <div class="row">
+            <span class="key">Platform</span>
+            <span class="val">Android · Wear</span>
+          </div>
+          <div class="row">
+            <span class="key">ETA</span>
+            <span class="val">When it's ready™</span>
+          </div>
+        </div>
+        <a href="#" class="mono" style="margin-top:1rem;">
+          Get notified →
+        </a>
+      </article>
+    </div>
+  </section>
 
-    <script>
-        const images = [
-            'frames/explore_dark.png',
-            'frames/collections_dark.png',
-            'frames/my_library_dark.png',
-            'frames/overlays_dark.png',
-            'frames/background_generator.png',
-            'frames/image_editor_stripes.png',
-        ];
+  <section class="section" style="text-align:center; padding-top:6rem; padding-bottom:6rem;">
+    <span class="mono" style="display:block; margin-bottom:1.25rem;">Say hello</span>
+    <h2 style="font-size:clamp(2rem, 4.5vw, 3.5rem); max-width:14ch; margin:0 auto 1.5rem;">
+      Got an Android question?<br>
+      <span style="color:var(--fg-dim); font-style:italic; font-weight:300;">
+        I'm probably procrastinating right now.
+      </span>
+    </h2>
+    <p style="color:var(--fg-dim); max-width:480px; margin:0 auto 2rem; line-height:1.5;">
+      Collaborations, code review, or just Android chatter - I read everything.
+      I reply to most things.
+    </p>
+    <a href="mailto:admin@sulacodigital.com" class="btn btn-primary">
+      Contact me →
+    </a>
+  </section>
 
-        const track = document.getElementById('carouselTrack');
-        const dotsContainer = document.getElementById('carouselDots');
-        let current = 0;
+  <footer class="site-footer">
+    <div>
+      <div class="footer-brand">Sulaco Digital</div>
+      <div class="footer-brand-sub">
+        Independent Android studio. Auckland, NZ.
+      </div>
+      <div class="socials">
+        <a href="#" target="_blank" rel="noopener" aria-label="twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" target="_blank" rel="noopener" aria-label="linkedin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.268 2.37 4.268 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg></a>
+        <a href="#" target="_blank" rel="noopener" aria-label="github"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+        <a href="#" target="_blank" rel="noopener" aria-label="youtube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <h4>Site</h4>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="blog.html">Blog</a>
+    </div>
+    <div>
+      <h4>Apps</h4>
+      <a href="apps/spectral/index.html">Spectral</a>
+      <a href="#">Impulse Reader</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="mailto:admin@sulacodigital.com">admin@sulacodigital.com</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Sulaco Digital</span>
+      <span>Handcrafted in Auckland</span>
+    </div>
+  </footer>
 
-        images.forEach((src, i) => {
-            const img = document.createElement('img');
-            img.src = src;
-            img.className = 'carousel-slide';
-            img.alt = '';
-            track.appendChild(img);
-
-            const dot = document.createElement('button');
-            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-            dot.addEventListener('click', () => goTo(i));
-            dotsContainer.appendChild(dot);
-        });
-
-        function goTo(idx) {
-            current = idx;
-            const slideWidth = track.parentElement.offsetWidth;
-            track.style.transform = 'translateX(-' + (idx * slideWidth) + 'px)';
-            document.querySelectorAll('.carousel-dot').forEach((d, i) => {
-                d.classList.toggle('active', i === idx);
-            });
-        }
-
-        setInterval(() => goTo((current + 1) % images.length), 3000);
-    </script>
+  <script>
+    // Hero phone-stack cycle: front and back swap through SCREENS every 3.5s
+    (function () {
+      const SCREENS = [
+        { src: 'frames/explore_dark.png', caption: 'Explore' },
+        { src: 'frames/collections_dark.png', caption: 'Collections' },
+        { src: 'frames/my_library_dark.png', caption: 'Library' },
+        { src: 'frames/overlays_dark.png', caption: 'Overlays' },
+        { src: 'frames/background_generator.png', caption: 'Generator' },
+        { src: 'frames/image_editor_stripes.png', caption: 'Editor' },
+      ];
+      const front = document.getElementById('heroPhoneFront');
+      const back = document.getElementById('heroPhoneBack');
+      if (!front || !back) return;
+      let i = 0;
+      setInterval(() => {
+        i = (i + 1) % SCREENS.length;
+        const next = SCREENS[(i + 1) % SCREENS.length];
+        const cur = SCREENS[i];
+        back.src = next.src;
+        back.alt = '';
+        front.src = cur.src;
+        front.alt = cur.caption;
+      }, 3500);
+    })();
+  </script>
 
 </body>
 </html>

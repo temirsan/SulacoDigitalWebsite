@@ -1,101 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy | Spectral</title>
-    <link rel="stylesheet" href="../../style.css">
-    <style>
-        body {
-            background-image: radial-gradient(ellipse 160% 70% at 50% 48%, #020105 0%, #0f0524 18%, #2a1565 35%, #5a35e6 55%, #9b6dff 72%, #d8c8ff 88%);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Spectral</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <style>
+    .legal-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2rem 5% 5rem;
+    }
+    .legal-back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      text-decoration: none;
+      margin-bottom: 3rem;
+      transition: color 0.2s;
+    }
+    .legal-back:hover { color: var(--fg); }
+
+    .legal-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .legal-kicker {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-hi);
+      background: var(--accent-soft);
+      padding: 0.3rem 0.7rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+    .legal-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 500;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+    .legal-meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--fg-mute);
+    }
+
+    .legal-body {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--fg-dim);
+    }
+    .legal-body p { margin-bottom: 1.25rem; }
+    .legal-body h2 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--fg);
+      margin: 2.75rem 0 1rem;
+      letter-spacing: -0.02em;
+    }
+    .legal-body h3 {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--fg);
+      margin: 1.75rem 0 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .legal-body strong { color: var(--fg); font-weight: 500; }
+    .legal-body a {
+      color: var(--accent-hi);
+      text-decoration: none;
+      border-bottom: 1px solid oklch(60% 0.18 var(--accent-h) / 0.3);
+      transition: border-color 0.2s;
+    }
+    .legal-body a:hover { border-bottom-color: var(--accent-hi); }
+
+    .legal-footer-row {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 5%;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--fg-mute);
+    }
+    .legal-footer-row a { color: var(--fg-dim); text-decoration: none; margin-right: 1.5rem; }
+    .legal-footer-row a:hover { color: var(--fg); }
+  </style>
 </head>
 <body>
 
-    <nav>
-        <a href="../../index.html" class="nav-logo">Sulaco Digital</a>
-        <ul class="nav-links">
-            <li><a href="../../about.html">About</a></li>
-            <li><a href="../../index.html#portfolio">Portfolio</a></li>
-            <li><a href="../../blog.html">Blog</a></li>
-        </ul>
-        <a href="mailto:admin@sulacodigital.com?subject=Project Inquiry" class="nav-cta">CONTACT US</a>
-    </nav>
+  <nav class="site-nav">
+    <a href="../../index.html" class="nav-logo">
+      <span class="nav-logo-mark"></span>
+      <span>Sulaco Digital</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="../../about.html">About</a></li>
+      <li><a href="../../index.html#portfolio" class="active">Portfolio</a></li>
+      <li><a href="../../blog.html">Blog</a></li>
+    </ul>
+    <a href="mailto:admin@sulacodigital.com" class="nav-cta">
+      <span class="dot"></span>
+      Let's talk
+    </a>
+  </nav>
 
-    <div class="page-hero">
-        <h1>Privacy <span>Policy</span></h1>
-        <p>Spectral</p>
+  <article class="legal-wrap">
+    <a href="index.html" class="legal-back">← Back to Spectral</a>
+
+    <header class="legal-header">
+      <span class="legal-kicker">Spectral · Legal</span>
+      <h1 class="legal-title">Privacy Policy</h1>
+      <p class="legal-meta">Last updated: April 2026</p>
+    </header>
+
+    <div class="legal-body">
+      <h2>1. Who we are</h2>
+      <p>Spectral is developed and operated by <strong>Sulaco Digital</strong>, a sole trader business based in Auckland, New Zealand. In this policy, "we", "us", and "our" refer to Sulaco Digital. You can reach us at <strong>admin@sulacodigital.com</strong>.</p>
+
+      <h2>2. What this policy covers</h2>
+      <p>This Privacy Policy describes how information is handled when you use the Spectral app on Android (available on Google Play). It covers both information we handle directly and information collected on our behalf by the third-party services that power the app.</p>
+
+      <h2>3. Information we collect directly</h2>
+      <p><strong>None.</strong> Spectral does not require an account. We do not collect your name, email address, or any personally identifying information. Any photos you upload into the app and any wallpapers you save are processed and stored entirely on your device. Nothing you create is sent to our servers - we do not operate any cloud storage or upload pipeline.</p>
+
+      <h2>4. Information collected by third-party services</h2>
+      <p>The following third-party SDKs and services are integrated into Spectral and may collect information about you. Each operates under its own privacy policy, linked below.</p>
+
+      <h3>4a. Firebase Analytics (Google LLC)</h3>
+      <p>We use Firebase Analytics to understand how the app is used and to identify crashes. It collects anonymised data including: screen views and feature interactions, session duration, app version, device model, operating system version, and approximate country or region. This data does not identify you personally and is aggregated before we review it.</p>
+      <p><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></p>
+
+      <h3>4b. Google AdMob (Google LLC) - free users only</h3>
+      <p>If you use Spectral without purchasing Spectral Pro, ads are served by Google AdMob. AdMob may collect your Android Advertising ID (GAID), device information, and app usage context to deliver and measure ads. <strong>If you purchase Spectral Pro, ads are disabled and AdMob does not process your data.</strong></p>
+      <p>If you are located in the EU or EEA, you will be shown a consent prompt before any personalised advertising is served, as required by the GDPR and Google's EU User Consent Policy. You can reset or delete your Advertising ID at any time in: <em>Android Settings &gt; Privacy &gt; Ads</em>.</p>
+      <p><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></p>
+
+      <h3>4c. RevenueCat (RevenueCat, Inc.)</h3>
+      <p>RevenueCat manages in-app purchase entitlements. When you purchase Spectral Pro, RevenueCat receives your purchase transaction ID, purchase date, and an anonymous device identifier to verify and maintain your premium status. RevenueCat does not receive your payment details - those are handled entirely by Google Play.</p>
+      <p><a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">RevenueCat Privacy Policy</a></p>
+
+      <h3>4d. ImageKit CDN</h3>
+      <p>Curated images in Spectral (collections, explore feed) are served from ImageKit's content delivery network. Like any CDN, ImageKit's servers receive standard HTTP request data - including your IP address and request headers - when the app fetches images. No personal profiles are built from this data.</p>
+      <p><a href="https://imagekit.io/privacy-policy/" target="_blank" rel="noopener">ImageKit Privacy Policy</a></p>
+
+      <h2>5. Data stored on your device</h2>
+      <p>Spectral stores your saved wallpapers, edits, favourites, recent history, and app settings locally on your device using Android's Room database and DataStore. This data never leaves your device. It is removed when you uninstall the app.</p>
+
+      <h2>6. How we use information</h2>
+      <p>In summary, the information collected across the services above is used to: understand how the app is used and fix problems (Firebase Analytics); serve ads to free users (AdMob); verify your Pro purchase status (RevenueCat); and deliver curated content (ImageKit). We use no data for any purpose beyond operating and improving Spectral.</p>
+
+      <h2>7. Data we do not collect or share</h2>
+      <p>We do not collect your name, email, location, contacts, or any account credentials. We do not upload your photos or created wallpapers. We do not sell, rent, or trade any data to third parties for marketing purposes.</p>
+
+      <h2>8. Your rights</h2>
+      <p>Because Spectral itself holds no personal data about you, most data access or deletion requests are best directed to the relevant third-party services listed in Section 4. However, we are happy to assist where we can.</p>
+      <p><strong>EU/EEA residents (GDPR):</strong> You have the right to access, rectify, erase, restrict processing of, and port your personal data, as well as to object to processing and withdraw consent. Contact us at admin@sulacodigital.com and we will assist or direct your request appropriately.</p>
+      <p><strong>New Zealand residents (Privacy Act 2020):</strong> You have the right to request access to and correction of personal information held about you under the Privacy Act 2020.</p>
+      <p>To remove analytics identifiers associated with your device, you can reset your Advertising ID in Android Settings or uninstall the app to clear all locally stored data.</p>
+
+      <h2>9. Data retention</h2>
+      <p>Firebase Analytics retains event data for up to 14 months by default (Google's standard). RevenueCat retains purchase records for as long as necessary to verify entitlements. Local device data is retained until you uninstall the app. We do not directly hold any personal data and therefore have no retention period of our own to specify.</p>
+
+      <h2>10. Children's privacy</h2>
+      <p>Spectral is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe a child has used the app and you have concerns, please contact us at admin@sulacodigital.com.</p>
+
+      <h2>11. Changes to this policy</h2>
+      <p>We may update this Privacy Policy from time to time. Material changes will be communicated through a notice in the app or by updating the date at the top of this page. Continued use of Spectral after changes take effect constitutes acceptance of the revised policy.</p>
+
+      <h2>12. Governing law</h2>
+      <p>This Privacy Policy is governed by the laws of New Zealand, including the Privacy Act 2020.</p>
+
+      <h2>13. Contact</h2>
+      <p>Questions or concerns about this Privacy Policy? Contact us at <strong>admin@sulacodigital.com</strong>.</p>
     </div>
+  </article>
 
-    <div class="legal-section">
-        <p class="legal-meta">Last updated: April 2026</p>
-
-        <h2>1. Who We Are</h2>
-        <p>Spectral is developed and operated by <strong>Sulaco Digital</strong>, a sole trader business based in Auckland, New Zealand. In this policy, "we", "us", and "our" refer to Sulaco Digital. You can reach us at <strong>admin@sulacodigital.com</strong>.</p>
-
-        <h2>2. What This Policy Covers</h2>
-        <p>This Privacy Policy describes how information is handled when you use the Spectral app on Android (available on Google Play). It covers both information we handle directly and information collected on our behalf by the third-party services that power the app.</p>
-
-        <h2>3. Information We Collect Directly</h2>
-        <p><strong>None.</strong> Spectral does not require an account. We do not collect your name, email address, or any personally identifying information. Any photos you upload into the app and any wallpapers you save are processed and stored entirely on your device. Nothing you create is sent to our servers — we do not operate any cloud storage or upload pipeline.</p>
-
-        <h2>4. Information Collected by Third-Party Services</h2>
-        <p>The following third-party SDKs and services are integrated into Spectral and may collect information about you. Each operates under its own privacy policy, linked below.</p>
-
-        <h3>4a. Firebase Analytics (Google LLC)</h3>
-        <p>We use Firebase Analytics to understand how the app is used and to identify crashes. It collects anonymised data including: screen views and feature interactions, session duration, app version, device model, operating system version, and approximate country or region. This data does not identify you personally and is aggregated before we review it.</p>
-        <p><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></p>
-
-        <h3>4b. Google AdMob (Google LLC) — free users only</h3>
-        <p>If you use Spectral without purchasing Spectral Pro, ads are served by Google AdMob. AdMob may collect your Android Advertising ID (GAID), device information, and app usage context to deliver and measure ads. <strong>If you purchase Spectral Pro, ads are disabled and AdMob does not process your data.</strong></p>
-        <p>If you are located in the EU or EEA, you will be shown a consent prompt before any personalised advertising is served, as required by the GDPR and Google's EU User Consent Policy. You can reset or delete your Advertising ID at any time in: <em>Android Settings &gt; Privacy &gt; Ads</em>.</p>
-        <p><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></p>
-
-        <h3>4c. RevenueCat (RevenueCat, Inc.)</h3>
-        <p>RevenueCat manages in-app purchase entitlements. When you purchase Spectral Pro, RevenueCat receives your purchase transaction ID, purchase date, and an anonymous device identifier to verify and maintain your premium status. RevenueCat does not receive your payment details — those are handled entirely by Google Play.</p>
-        <p><a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener">RevenueCat Privacy Policy</a></p>
-
-        <h3>4d. ImageKit CDN</h3>
-        <p>Curated images in Spectral (collections, explore feed) are served from ImageKit's content delivery network. Like any CDN, ImageKit's servers receive standard HTTP request data — including your IP address and request headers — when the app fetches images. No personal profiles are built from this data.</p>
-        <p><a href="https://imagekit.io/privacy-policy/" target="_blank" rel="noopener">ImageKit Privacy Policy</a></p>
-
-        <h2>5. Data Stored on Your Device</h2>
-        <p>Spectral stores your saved wallpapers, edits, favourites, recent history, and app settings locally on your device using Android's Room database and DataStore. This data never leaves your device. It is removed when you uninstall the app.</p>
-
-        <h2>6. How We Use Information</h2>
-        <p>In summary, the information collected across the services above is used to: understand how the app is used and fix problems (Firebase Analytics); serve ads to free users (AdMob); verify your Pro purchase status (RevenueCat); and deliver curated content (ImageKit). We use no data for any purpose beyond operating and improving Spectral.</p>
-
-        <h2>7. Data We Do Not Collect or Share</h2>
-        <p>We do not collect your name, email, location, contacts, or any account credentials. We do not upload your photos or created wallpapers. We do not sell, rent, or trade any data to third parties for marketing purposes.</p>
-
-        <h2>8. Your Rights</h2>
-        <p>Because Spectral itself holds no personal data about you, most data access or deletion requests are best directed to the relevant third-party services listed in Section 4. However, we are happy to assist where we can.</p>
-        <p><strong>EU/EEA residents (GDPR):</strong> You have the right to access, rectify, erase, restrict processing of, and port your personal data, as well as to object to processing and withdraw consent. Contact us at admin@sulacodigital.com and we will assist or direct your request appropriately.</p>
-        <p><strong>New Zealand residents (Privacy Act 2020):</strong> You have the right to request access to and correction of personal information held about you under the Privacy Act 2020.</p>
-        <p>To remove analytics identifiers associated with your device, you can reset your Advertising ID in Android Settings or uninstall the app to clear all locally stored data.</p>
-
-        <h2>9. Data Retention</h2>
-        <p>Firebase Analytics retains event data for up to 14 months by default (Google's standard). RevenueCat retains purchase records for as long as necessary to verify entitlements. Local device data is retained until you uninstall the app. We do not directly hold any personal data and therefore have no retention period of our own to specify.</p>
-
-        <h2>10. Children's Privacy</h2>
-        <p>Spectral is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe a child has used the app and you have concerns, please contact us at admin@sulacodigital.com.</p>
-
-        <h2>11. Changes to This Policy</h2>
-        <p>We may update this Privacy Policy from time to time. Material changes will be communicated through a notice in the app or by updating the date at the top of this page. Continued use of Spectral after changes take effect constitutes acceptance of the revised policy.</p>
-
-        <h2>12. Governing Law</h2>
-        <p>This Privacy Policy is governed by the laws of New Zealand, including the Privacy Act 2020.</p>
-
-        <h2>13. Contact</h2>
-        <p>Questions or concerns about this Privacy Policy? Contact us at <strong>admin@sulacodigital.com</strong>.</p>
+  <div class="legal-footer-row">
+    <div>
+      <a href="terms.html">Terms of service</a>
+      <a href="index.html">Spectral</a>
     </div>
-
-    <div class="page-footer">
-        <a href="terms.html">Terms of Service</a>
-        <a href="index.html">Spectral</a>
-        <a href="../../index.html">&larr; Back to Portfolio</a>
-    </div>
+    <a href="../../index.html#portfolio">← Back to portfolio</a>
+  </div>
 
 </body>
 </html>
