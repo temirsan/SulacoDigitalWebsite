@@ -381,7 +381,7 @@ nav.site-nav {
 
 /* ── Section framing ── */
 .section {
-  padding: 5rem 5% 3rem;
+  padding: 6rem 5% 6rem;
   max-width: 1400px;
   margin: 0 auto;
 }
@@ -390,7 +390,7 @@ nav.site-nav {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3.5rem;
   gap: 2rem;
   flex-wrap: wrap;
 }
@@ -417,7 +417,7 @@ nav.site-nav {
 .portfolio-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .app-card {
