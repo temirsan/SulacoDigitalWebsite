@@ -52,15 +52,16 @@
       display: block;
       filter: drop-shadow(0 30px 60px oklch(8% 0.02 280 / 0.7));
     }
-    /* Cascade: tablet back-left → foldable center → phone front-right */
+    /* Cascade: tablet back-left → foldable center → phone front-right.
+       Each device overlaps the previous; phone right edge reaches container right (100%). */
     .device-showcase-v2 .ds-tablet {
       width: 58%; left: 0%; bottom: 28%; z-index: 1;
     }
     .device-showcase-v2 .ds-foldable {
-      width: 33%; left: 27%; bottom: 13%; z-index: 2;
+      width: 33%; left: 54%; bottom: 13%; z-index: 2;
     }
     .device-showcase-v2 .ds-phone {
-      width: 17%; left: 56%; bottom: 0; z-index: 3;
+      width: 17%; left: 83%; bottom: 0; z-index: 3;
     }
     .device-showcase-v2::before {
       content: "";
@@ -366,10 +367,10 @@
     @media (max-width: 900px) {
       .app-hero-spectral { grid-template-columns: 1fr; }
       .device-showcase-v2 { width: 100%; margin-left: 0; }
-      /* Devices span 0–73% of the container; shift each ~14% right to centre the group */
-      .device-showcase-v2 .ds-tablet   { left: 14%; }
-      .device-showcase-v2 .ds-foldable { left: 41%; }
-      .device-showcase-v2 .ds-phone    { left: 70%; }
+      /* Scale positions + widths by 100/73 so the cascade spans left edge → right edge */
+      .device-showcase-v2 .ds-tablet   { width: 79%; left: 0%; }
+      .device-showcase-v2 .ds-foldable { width: 45%; left: 37%; }
+      .device-showcase-v2 .ds-phone    { width: 23%; left: 77%; }
       .feature-spotlight { grid-template-columns: 1fr; gap: 2rem; }
       .supporting-grid { grid-template-columns: 1fr 1fr; }
       .support-card:nth-child(3n) { border-right: 1px solid var(--border); }
