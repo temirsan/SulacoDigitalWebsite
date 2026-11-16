@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Cdefs%3E%3ClinearGradient id=%27g%27 x1=%270%27 y1=%270%27 x2=%271%27 y2=%271%27%3E%3Cstop offset=%270%25%27 stop-color=%27%238b6cf2%27/%3E%3Cstop offset=%2750%25%27 stop-color=%27%23b79bff%27/%3E%3Cstop offset=%27100%25%27 stop-color=%27%236a4bc9%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27url(%23g)%27/%3E%3Crect x=%277%27 y=%277%27 width=%2718%27 height=%2718%27 rx=%274%27 fill=%27%230a0612%27/%3E%3C/svg%3E">
-  <title>Terms of Service - Spectral - Sulaco Digital</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%230a0612%27/%3E%3Cg transform=%27translate(3.2 3.2) scale(.8)%27%3E%3Cpath fill=%27%23bfa0ff%27 d=%27M17.5 3v12.5H10.75a6.25 6.25 0 0 1 0-12.5z%27/%3E%3Cpath fill=%27%237a55e0%27 d=%27M14.5 29V16.5h6.75a6.25 6.25 0 0 1 0 12.5z%27/%3E%3C/g%3E%3C/svg%3E">
+  <title>Terms of Service · Spectral · Sulaco Digital</title>
+  <meta name="description" content="Terms of service for Spectral, the Android wallpaper app by Sulaco Digital.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="../../assets/site.css">
   <style>
     .legal-wrap {
@@ -14,10 +18,7 @@
     }
     .legal-back {
       display: inline-flex; align-items: center; gap: 0.4rem;
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      font-size: 0.92rem;
       color: var(--fg-dim);
       text-decoration: none;
       margin-bottom: 3rem;
@@ -30,18 +31,6 @@
       padding-bottom: 2rem;
       border-bottom: 1px solid var(--border);
     }
-    .legal-kicker {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent-hi);
-      background: var(--accent-soft);
-      padding: 0.3rem 0.7rem;
-      border-radius: 100px;
-      margin-bottom: 1.5rem;
-    }
     .legal-title {
       font-size: clamp(2rem, 5vw, 3rem);
       font-weight: 500;
@@ -50,9 +39,7 @@
       margin-bottom: 1rem;
     }
     .legal-meta {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
+      font-size: 0.9rem;
       color: var(--fg-mute);
     }
 
@@ -77,54 +64,42 @@
       transition: border-color 0.2s;
     }
     .legal-body a:hover { border-bottom-color: var(--accent-hi); }
-
-    .legal-footer-row {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2.5rem 5%;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--fg-mute);
-    }
-    .legal-footer-row a { color: var(--fg-dim); text-decoration: none; margin-right: 1.5rem; }
-    .legal-footer-row a:hover { color: var(--fg); }
   </style>
+  <meta name="theme-color" content="#08060d">
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+  <div class="backdrop" aria-hidden="true"><div class="backdrop-dots"><i></i><i></i></div></div>
 
   <nav class="site-nav">
     <a href="../../index.html" class="nav-logo">
-      <span class="nav-logo-mark"></span>
-      <span>Sulaco Digital</span>
+      <svg class="nav-logo-mark" viewBox="0 0 32 32" aria-hidden="true"><path class="d1" d="M17.5 3v12.5H10.75a6.25 6.25 0 0 1 0-12.5z"/><path class="d2" d="M14.5 29V16.5h6.75a6.25 6.25 0 0 1 0 12.5z"/></svg>
+      <span>Sulaco <i>Digital</i></span>
     </a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="navLinks">
       <li><a href="../../about.html">About</a></li>
       <li><a href="../../index.html#portfolio" class="active">Portfolio</a></li>
       <li><a href="../../blog.html">Blog</a></li>
     </ul>
-    <a href="mailto:admin@sulacodigital.com?subject=Project%20Inquiry" class="nav-cta">
-      <span class="dot"></span>
-      Let's talk
-    </a>
+    <div class="nav-right">
+      <a href="mailto:admin@sulacodigital.com" class="nav-cta">Get in touch</a>
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
+
+  <main>
 
   <article class="legal-wrap">
     <a href="index.html" class="legal-back">← Back to Spectral</a>
 
-    <header class="legal-header">
-      <span class="legal-kicker">Spectral · Legal</span>
+    <header class="legal-header reveal">
       <h1 class="legal-title">Terms of Service</h1>
       <p class="legal-meta">Last updated: April 2026</p>
     </header>
 
-    <div class="legal-body">
+    <div class="legal-body reveal" style="transition-delay:.04s;">
       <h2>1. Acceptance of terms</h2>
       <p>By downloading, installing, or using Spectral ("the App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree, do not use the App.</p>
       <p>Spectral is developed and operated by <strong>Sulaco Digital</strong>, a sole trader business based in Auckland, New Zealand ("we", "us", "our"). Contact: <strong>admin@sulacodigital.com</strong>.</p>
@@ -180,13 +155,96 @@
     </div>
   </article>
 
-  <div class="legal-footer-row">
+
+  </main>
+
+  <footer class="site-footer">
     <div>
-      <a href="privacy.html">Privacy policy</a>
-      <a href="index.html">Spectral</a>
+      <div class="footer-brand">Sulaco Digital</div>
+      <div class="footer-brand-sub">
+        Android apps by Temir Atambayev. Auckland, NZ.
+      </div>
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/atemirlan/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.268 2.37 4.268 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg></a>
+        <a href="https://github.com/temirsan" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+      </div>
     </div>
-    <a href="../../index.html#portfolio">← Back to portfolio</a>
-  </div>
+    <div>
+      <h2>Site</h2>
+      <a href="../../index.html">Home</a>
+      <a href="../../about.html">About</a>
+      <a href="../../index.html#portfolio">Portfolio</a>
+      <a href="../../blog.html">Blog</a>
+    </div>
+    <div>
+      <h2>Apps</h2>
+      <a href="../../apps/spectral/index.html">Spectral</a>
+      <a href="../../index.html#impulse">Impulse Reader</a>
+      <a href="privacy.html">Spectral privacy</a>
+      <a href="terms.html">Spectral terms</a>
+    </div>
+    <div>
+      <h2>Contact</h2>
+      <a href="mailto:admin@sulacodigital.com">admin@sulacodigital.com</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Sulaco Digital</span>
+      <span>Built by hand, no framework</span>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle: open/close the dropdown, close on link click, outside
+    // click, Escape, or resize back past the mobile breakpoint.
+    (function () {
+      const toggle = document.getElementById('navToggle');
+      const links = document.getElementById('navLinks');
+      if (!toggle || !links) return;
+      const close = () => {
+        toggle.classList.remove('is-open');
+        links.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      };
+      const open = () => {
+        toggle.classList.add('is-open');
+        links.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+      };
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (toggle.classList.contains('is-open')) close(); else open();
+      });
+      links.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') close();
+      });
+      document.addEventListener('click', (e) => {
+        if (!links.contains(e.target) && !toggle.contains(e.target)) close();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+      });
+      window.matchMedia('(min-width: 601px)').addEventListener('change', (e) => {
+        if (e.matches) close();
+      });
+    })();
+  </script>
+
+  <script>
+    // Scroll reveal: fade/slide .reveal elements into view once, then disconnect
+    (function () {
+      const els = document.querySelectorAll('.reveal');
+      if (!els.length || !('IntersectionObserver' in window)) return;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+      els.forEach((el) => io.observe(el));
+    })();
+  </script>
 
 </body>
 </html>

@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Cdefs%3E%3ClinearGradient id=%27g%27 x1=%270%27 y1=%270%27 x2=%271%27 y2=%271%27%3E%3Cstop offset=%270%25%27 stop-color=%27%238b6cf2%27/%3E%3Cstop offset=%2750%25%27 stop-color=%27%23b79bff%27/%3E%3Cstop offset=%27100%25%27 stop-color=%27%236a4bc9%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27url(%23g)%27/%3E%3Crect x=%277%27 y=%277%27 width=%2718%27 height=%2718%27 rx=%274%27 fill=%27%230a0612%27/%3E%3C/svg%3E">
-  <title>About - Sulaco Digital</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%230a0612%27/%3E%3Cg transform=%27translate(3.2 3.2) scale(.8)%27%3E%3Cpath fill=%27%23bfa0ff%27 d=%27M17.5 3v12.5H10.75a6.25 6.25 0 0 1 0-12.5z%27/%3E%3Cpath fill=%27%237a55e0%27 d=%27M14.5 29V16.5h6.75a6.25 6.25 0 0 1 0 12.5z%27/%3E%3C/g%3E%3C/svg%3E">
+  <title>About Temir Atambayev · Sulaco Digital</title>
+  <meta name="description" content="Temir Atambayev: senior Android engineer in Auckland, most recently at Trade Me. Nine years of production Android, from NZ's largest marketplace to a dating app in 145 countries.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="assets/site.css">
   <style>
     .about-hero {
@@ -12,7 +16,6 @@
       margin: 0 auto;
       padding: 4rem 5% 3rem;
     }
-    .about-hero .mono { display: block; margin-bottom: 1rem; }
     .about-hero h1 {
       font-size: clamp(2.5rem, 5.4vw, 4.4rem);
       font-weight: 500;
@@ -21,9 +24,12 @@
       margin-bottom: 1.5rem;
       max-width: 18ch;
     }
-    .about-hero h1 em {
-      font-style: italic; font-weight: 300;
-      color: var(--fg-dim);
+    .about-hero .actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem; }
+    .about-layout h2 {
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
     }
     .about-hero .lede {
       color: var(--fg-dim);
@@ -60,29 +66,21 @@
     }
     .skill-box {
       padding: 1.25rem 1.5rem;
-      transition: border-color 0.2s, transform 0.2s;
+      transition: border-color 0.3s var(--ease), transform 0.3s var(--ease);
     }
     .skill-box:hover {
       border-color: var(--border-2);
       transform: translateY(-2px);
     }
-    .skill-box .sn {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      color: var(--fg-mute);
-      letter-spacing: 0.1em;
-      margin-bottom: 0.75rem;
-      display: block;
-    }
-    .skill-box h4 {
+    .skill-box h3 {
       font-size: 1rem;
       font-weight: 500;
       letter-spacing: -0.015em;
       margin-bottom: 0.3rem;
     }
     .skill-box p {
-      font-size: 0.82rem;
-      color: var(--fg-mute);
+      font-size: 0.88rem;
+      color: var(--fg-dim);
       line-height: 1.45;
     }
 
@@ -99,13 +97,12 @@
     .exp-row:first-child { border-top: none; padding-top: 0; }
     .exp-date {
       font-family: var(--font-mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
+      font-size: 0.82rem;
       color: var(--fg-mute);
-      text-transform: uppercase;
+      font-variant-numeric: tabular-nums;
       padding-top: 0.2rem;
     }
-    .exp-body h4 {
+    .exp-body h3 {
       font-size: 1.05rem;
       font-weight: 500;
       color: var(--fg);
@@ -114,9 +111,7 @@
     }
     .exp-body .role {
       color: var(--accent-hi);
-      font-size: 0.85rem;
-      font-family: var(--font-mono);
-      letter-spacing: 0.04em;
+      font-size: 0.92rem;
       margin-bottom: 0.6rem;
       display: block;
     }
@@ -131,117 +126,124 @@
       .exp-row { grid-template-columns: 1fr; gap: 0.5rem; }
     }
   </style>
+  <meta name="theme-color" content="#08060d">
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+  <div class="backdrop" aria-hidden="true"><div class="backdrop-dots"><i></i><i></i></div></div>
 
   <nav class="site-nav">
     <a href="index.html" class="nav-logo">
-      <span class="nav-logo-mark"></span>
-      <span>Sulaco Digital</span>
+      <svg class="nav-logo-mark" viewBox="0 0 32 32" aria-hidden="true"><path class="d1" d="M17.5 3v12.5H10.75a6.25 6.25 0 0 1 0-12.5z"/><path class="d2" d="M14.5 29V16.5h6.75a6.25 6.25 0 0 1 0 12.5z"/></svg>
+      <span>Sulaco <i>Digital</i></span>
     </a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="navLinks">
       <li><a href="about.html" class="active">About</a></li>
       <li><a href="index.html#portfolio">Portfolio</a></li>
       <li><a href="blog.html">Blog</a></li>
     </ul>
-    <a href="mailto:admin@sulacodigital.com?subject=Project%20Inquiry" class="nav-cta">
-      <span class="dot"></span>
-      Let's talk
-    </a>
+    <div class="nav-right">
+      <a href="mailto:admin@sulacodigital.com" class="nav-cta">Get in touch</a>
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
+  <main>
+
   <div class="about-hero">
-    <span class="mono">About</span>
-    <h1>Senior Android engineer.<br><em>Recovering perfectionist.</em></h1>
-    <p class="lede">
-      Hi, I'm <strong style="color:var(--fg);">Temir Atambayev</strong>. I've spent
-      the last 8 years building Android apps used by millions - from the biggest
-      marketplace in NZ to a dating app running in 145 countries. Sulaco Digital
-      is where I build the things nobody asked for.
+    <h1 class="reveal">Temir Atambayev</h1>
+    <p class="lede reveal" style="transition-delay:.06s;">
+      Senior Android engineer in Auckland, most recently at Trade Me. I've spent nine years
+      building Android apps used by millions, from New Zealand's largest
+      marketplace to a dating app running in 145 countries. Sulaco Digital is
+      where I build my own apps. I'm open to new senior Android roles.
     </p>
+    <div class="actions reveal" style="transition-delay:.1s;">
+      <a href="https://www.linkedin.com/in/atemirlan/" class="btn btn-primary" target="_blank" rel="noopener">LinkedIn profile</a>
+      <a href="https://github.com/temirsan" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:admin@sulacodigital.com" class="btn btn-ghost">Email</a>
+    </div>
   </div>
 
   <div class="about-layout">
 
-    <div class="panel bio-card">
+    <div class="panel bio-card reveal">
       <p>
-        My focus is on modern tooling - Jetpack Compose, coroutines, the usual
-        suspects - but what I really care about is keeping things clean as they
-        grow. <strong>Not just making it work, but making it last.</strong>
+        I work in modern Android: Kotlin, Jetpack Compose, coroutines and Flow.
+        What I care about most is keeping a codebase clean as it grows.
+        <strong>Not just making it work, but making it last.</strong>
       </p>
       <p>
-        Beyond shipping features, I enjoy helping other engineers grow: mentoring,
-        code reviews, being the person who explains things clearly. If you want
-        to talk Android, or have a question about one of my apps, I'm easy to
-        reach.
+        Beyond shipping features, I enjoy helping other engineers grow through
+        mentoring and code review, and being the person who explains things
+        clearly. If you want to talk Android, or have a question about one of my
+        apps, I'm easy to reach.
       </p>
     </div>
 
     <div>
-      <div class="section-head" style="margin-bottom:1.25rem;">
-        <span class="mono">Skills & expertise</span>
-      </div>
+      <h2 class="reveal">Skills</h2>
       <div class="skills-grid">
-        <div class="panel skill-box">
-          <h4>Native Android</h4>
+        <div class="panel skill-box reveal">
+          <h3>Native Android</h3>
           <p>Kotlin + Java, production at scale</p>
         </div>
-        <div class="panel skill-box">
-          <h4>Jetpack Compose</h4>
+        <div class="panel skill-box reveal" style="transition-delay:.03s;">
+          <h3>Jetpack Compose</h3>
           <p>Declarative UI since the early betas</p>
         </div>
-        <div class="panel skill-box">
-          <h4>App architecture</h4>
-          <p>MVVM, MVI - pick your poison</p>
+        <div class="panel skill-box reveal" style="transition-delay:.05s;">
+          <h3>App architecture</h3>
+          <p>MVVM and MVI, modularised, testable</p>
         </div>
-        <div class="panel skill-box">
-          <h4>API & SDK wiring</h4>
+        <div class="panel skill-box reveal" style="transition-delay:.08s;">
+          <h3>API & SDK wiring</h3>
           <p>REST, Firebase, payments, analytics</p>
         </div>
-        <div class="panel skill-box">
-          <h4>Play Console</h4>
+        <div class="panel skill-box reveal" style="transition-delay:.1s;">
+          <h3>Play Console</h3>
           <p>Rollouts, experiments, release health</p>
         </div>
-        <div class="panel skill-box">
-          <h4>Mentoring</h4>
-          <p>Code review is my love language</p>
+        <div class="panel skill-box reveal" style="transition-delay:.12s;">
+          <h3>Mentoring</h3>
+          <p>Code review, pairing, onboarding juniors</p>
         </div>
       </div>
     </div>
 
     <div>
-      <div class="section-head" style="margin-bottom:1.25rem;">
-        <span class="mono">Experience</span>
-      </div>
+      <h2 class="reveal">Experience</h2>
       <div class="panel experience">
-        <div class="exp-row">
-          <div class="exp-date">2022 - now</div>
+        <div class="exp-row reveal">
+          <div class="exp-date">2022 – 2026</div>
           <div class="exp-body">
-            <h4>Trade Me Ltd</h4>
+            <h3>Trade Me Ltd</h3>
             <span class="role">Senior Android Developer</span>
-            <p>New Zealand's largest marketplace. Shipping user-facing features, migrating Java → Kotlin, mentoring juniors.</p>
+            <p>New Zealand's largest marketplace. Shipped user-facing features, migrated Java to Kotlin, mentored juniors.</p>
           </div>
         </div>
-        <div class="exp-row">
-          <div class="exp-date">2021 - 2022</div>
+        <div class="exp-row reveal" style="transition-delay:.03s;">
+          <div class="exp-date">2021 – 2022</div>
           <div class="exp-body">
-            <h4>Roam Digital</h4>
+            <h3>Roam Digital</h3>
             <span class="role">Senior Android Developer</span>
             <p>FinTech work across a leading APAC digital consultancy. App security, code quality, backend integrations.</p>
           </div>
         </div>
-        <div class="exp-row">
-          <div class="exp-date">2018 - 2021</div>
+        <div class="exp-row reveal" style="transition-delay:.06s;">
+          <div class="exp-date">2018 – 2021</div>
           <div class="exp-body">
-            <h4>Hud Studio / CnZ Tech</h4>
+            <h3>Hud Studio / CnZ Tech</h3>
             <span class="role">Senior Android Developer</span>
             <p>Scaled a dating app to millions of users in 145 countries. In-app purchases, 22 languages, performance at scale.</p>
           </div>
         </div>
-        <div class="exp-row">
-          <div class="exp-date">2017 - 2018</div>
+        <div class="exp-row reveal" style="transition-delay:.09s;">
+          <div class="exp-date">2017 – 2018</div>
           <div class="exp-body">
-            <h4>ImperialDigital / Electric Flamingo</h4>
+            <h3>ImperialDigital / Electric Flamingo</h3>
             <span class="role">Android Developer</span>
             <p>Built Android apps from mockup to ship for a B2B agency. Social login, maps, REST.</p>
           </div>
@@ -250,61 +252,112 @@
     </div>
 
     <div>
-      <div class="section-head" style="margin-bottom:1.25rem;">
-        <span class="mono">Education & certifications</span>
-      </div>
+      <h2 class="reveal">Education and certifications</h2>
       <div class="skills-grid">
-        <div class="panel skill-box">
-          <h4>B.Sc. Computer Science</h4>
-          <p>Nazarbayev University · 2010-15</p>
+        <div class="panel skill-box reveal">
+          <h3>B.Sc. Computer Science</h3>
+          <p>Nazarbayev University · 2010–15</p>
         </div>
-        <div class="panel skill-box">
-          <h4>Grad. Diploma IT</h4>
-          <p>Aspire2 Tertiary Group · 2016-17</p>
+        <div class="panel skill-box reveal" style="transition-delay:.03s;">
+          <h3>Grad. Diploma IT</h3>
+          <p>Aspire2 Tertiary Group · 2016–17</p>
         </div>
-        <div class="panel skill-box">
-          <h4>Certified Android Dev</h4>
+        <div class="panel skill-box reveal" style="transition-delay:.06s;">
+          <h3>Android certification</h3>
           <p>Android ATC · IITP NZ Associate</p>
         </div>
       </div>
     </div>
 
   </div>
+  </main>
+
 
   <footer class="site-footer">
     <div>
       <div class="footer-brand">Sulaco Digital</div>
       <div class="footer-brand-sub">
-        Independent Android studio. Auckland, NZ.
+        Android apps by Temir Atambayev. Auckland, NZ.
       </div>
       <div class="socials">
-        <a href="#" target="_blank" rel="noopener" aria-label="twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-        <a href="#" target="_blank" rel="noopener" aria-label="linkedin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.268 2.37 4.268 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg></a>
-        <a href="#" target="_blank" rel="noopener" aria-label="github"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
-        <a href="#" target="_blank" rel="noopener" aria-label="youtube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://www.linkedin.com/in/atemirlan/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.268 2.37 4.268 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg></a>
+        <a href="https://github.com/temirsan" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
       </div>
     </div>
     <div>
-      <h4>Site</h4>
+      <h2>Site</h2>
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="index.html#portfolio">Portfolio</a>
       <a href="blog.html">Blog</a>
     </div>
     <div>
-      <h4>Apps</h4>
+      <h2>Apps</h2>
       <a href="apps/spectral/index.html">Spectral</a>
-      <a href="#">Impulse Reader</a>
+      <a href="index.html#impulse">Impulse Reader</a>
     </div>
     <div>
-      <h4>Contact</h4>
+      <h2>Contact</h2>
       <a href="mailto:admin@sulacodigital.com">admin@sulacodigital.com</a>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Sulaco Digital</span>
-      <span>Handcrafted in Auckland</span>
+      <span>Built by hand, no framework</span>
     </div>
   </footer>
+
+  <script>
+    // Mobile nav toggle: open/close the dropdown, close on link click, outside
+    // click, Escape, or resize back past the mobile breakpoint.
+    (function () {
+      const toggle = document.getElementById('navToggle');
+      const links = document.getElementById('navLinks');
+      if (!toggle || !links) return;
+      const close = () => {
+        toggle.classList.remove('is-open');
+        links.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      };
+      const open = () => {
+        toggle.classList.add('is-open');
+        links.classList.add('is-open');
+        toggle.setAttribute('aria-expanded', 'true');
+      };
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (toggle.classList.contains('is-open')) close(); else open();
+      });
+      links.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') close();
+      });
+      document.addEventListener('click', (e) => {
+        if (!links.contains(e.target) && !toggle.contains(e.target)) close();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+      });
+      window.matchMedia('(min-width: 601px)').addEventListener('change', (e) => {
+        if (e.matches) close();
+      });
+    })();
+  </script>
+
+  <script>
+    // Scroll reveal: fade/slide .reveal elements into view once, then disconnect
+    (function () {
+      const els = document.querySelectorAll('.reveal');
+      if (!els.length || !('IntersectionObserver' in window)) return;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+      els.forEach((el) => io.observe(el));
+    })();
+  </script>
 
 </body>
 </html>

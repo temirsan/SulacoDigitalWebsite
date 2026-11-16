@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Portfolio website for **Sulaco Digital** — a mobile app development brand by Temir Atambayev (Senior Android Engineer). Showcases Spectral (wallpaper generator, in beta) and a teaser for Impulse Reader (placeholder, not yet built).
+Portfolio website for **Sulaco Digital** — a mobile app development brand by Temir Atambayev (Senior Android Engineer). Showcases Spectral (wallpaper generator, released on Google Play) and a teaser for Impulse Reader (placeholder, not yet built).
 
 ## Stack
 
@@ -24,33 +24,44 @@ Open `index.html` in a browser. No build step required.
 
 Multi-page static site:
 
-- `index.html` — Landing page with typographic hero, cycling phone-stack visual, stats row, portfolio (Spectral card + Impulse Reader teaser), contact band
+- `index.html` — Home page: hero with two phones floating directly on the backdrop, stats row, then a 12-column grid of panels (`#portfolio`): Spectral card, Impulse Reader teaser (`#impulse`), experience, skills, education, featured post, drafts, contact
 - `about.html` — Founder bio, skills grid, experience timeline, education
-- `blog.html` — Featured post + grid of post cards (most are placeholders linking to `#`)
+- `blog.html` — Featured post + an "In drafts" list of unwritten posts (unlinked, undated by design; never give them dates or `#` links)
 - `blog/designing-for-dark-mode.html` — Long-form blog article (the only fully written post)
 - `apps/spectral/index.html` — Spectral product page (hero, auto-scrolling gallery, feature spotlight, supporting grid, CTA band)
 - `apps/spectral/privacy.html`, `apps/spectral/terms.html` — Spectral legal pages
+- `404.html` — Not-found page (root-absolute links so it works at any depth)
+- `PRODUCT.md` — Product truth: audiences, positioning, confirmed facts (Spectral pricing, profile URLs) and things that must not be fabricated
 - `assets/site.css` — Single shared stylesheet for all pages
-- `frames/` — App screenshot PNGs
+- `frames/` — App screenshot images. Actively-referenced screenshots are WebP (resized to their actual max on-page display width, then compressed ~90% smaller than the original PNG exports — see `git log` around the "loading delay" fix for context).
 
 There is no `apps/impulse/`; Impulse Reader is intentionally only a teaser on the landing page until the app exists.
 
 ## Design Language
 
 - Dark theme; palette in OKLCH (deep indigo-black ink, lavender accent at hue 295)
-- Layered atmospheric halos via fixed `body::before` / `body::after` radial gradients
-- Glass panels (`.panel`): `backdrop-filter: blur(24px) saturate(1.1)` + masked gradient border
-- Typography: **Inter Tight** (sans, headings + body) + **JetBrains Mono** (eyebrows, labels, meta)
+- Backdrop: a fixed `.backdrop` layer (first child of `<body>` on every page) with a purple-blue glow and a dot matrix that brightens in slow drifting waves. Pure CSS in `site.css`: the dot grid is a static mask, and two oversized colour bands behind it move on `transform` only. The user asked for this look (after the Gemini Android app), so keep it; it is the one deliberate ambient animation. No per-component glow blobs
+- Panels (`.panel`): tinted surface + masked gradient hairline; no backdrop blur (nothing sits behind them)
+- Typography: **Bricolage Grotesque** (`--font-display`) for headings, stat numerals and the logo name; **Inter** (`--font-sans`) for body, nav, buttons and labels; **JetBrains Mono** only for data and code (dates, spec rows, `<code>`)
+- Logo: inline SVG `.nav-logo-mark`, two D shapes (one flipped) that read as an S, in `--accent-hi` / `--accent-lo`; the favicon is the same mark on a dark tile. The name is set as "Sulaco" bold + "Digital" light
+- Neutrals (ink, surface, border, dim/mute text) derive from `--accent-h` at low chroma, so changing the hue re-tints the whole site
+- Deliberately avoided (removed in the de-slop pass): eyebrow/kicker labels above headings, pulsing status dots, gradient-clipped or outlined text, coloured glow shadows, the bold-line + italic-dim-line headline on every page (kept once, on the home h1 only), duplicated stat rows
 - Accent hue is exposed as `--accent-h` CSS custom property; whole palette derives from it
 - Responsive breakpoints: `@media (max-width: 960px)` (layout collapse) and `@media (max-width: 600px)` (mobile tweaks)
 
-All pages share `assets/site.css` via `<link>`. Page-specific CSS is inlined in each HTML's `<style>` block (hero variants, article styles, legal-page styles). No CSS preprocessor or component system — edit `assets/site.css` directly for global changes; copy/paste the nav and footer markup if you add a new page.
+All pages share `assets/site.css` via `<link>` and the same nav and site footer (the Spectral, legal and article pages included); content sits in a `<main>` landmark. Page-specific CSS is inlined in each HTML's `<style>` block (hero variants, article styles, legal-page styles). No CSS preprocessor or component system — edit `assets/site.css` directly for global changes; copy/paste the `.backdrop` div, nav and footer markup if you add a new page.
 
 ## JavaScript
 
 Inline `<script>` blocks per page, kept minimal:
 
-- `index.html` — Hero phone-stack cycle: swaps the front and back `<img>` `src` through 6 screenshots every 3500ms.
-- `apps/spectral/index.html` — Auto-scrolling gallery: clones a strip of screenshots until it spans 3× viewport, then pans back and forth at constant speed via `requestAnimationFrame`. Pauses on hover.
+- `apps/spectral/index.html` — Auto-scrolling gallery: clones a strip of screenshots until it spans 3× viewport, then pans back and forth at constant speed via `requestAnimationFrame`. Pauses on hover or via a Pause button (for touch/keyboard); skipped entirely under `prefers-reduced-motion: reduce`.
+- Every page — `<script>document.documentElement.classList.add('js')</script>` in `<head>`, which the reveal CSS depends on.
+- Every page — a shared scroll-reveal snippet: an `IntersectionObserver` adds `.is-visible` to `.reveal` elements the first time they enter the viewport, then unobserves them. Pure CSS otherwise drives the animation (see `.reveal` in `assets/site.css`); the snippet is duplicated inline per page rather than factored into a shared file, consistent with the no-build-step architecture.
 
-No other pages have interactive JS.
+## Motion
+
+- `--ease: cubic-bezier(0.16, 1, 0.3, 1)` is the shared easing token for hover/transition polish; prefer it over bare `ease`/`linear` on new transitions.
+- `.reveal` / `.is-visible` (in `assets/site.css`) is the scroll-reveal utility described above. Content is visible by default: only `.js .reveal:not(.is-visible)` is hidden, so a failed script never blanks the page. Stagger multiple siblings with an inline `style="transition-delay:.08s;"` (matches the codebase's existing convention of ad hoc inline styles) rather than adding new nth-child CSS.
+- `@media (prefers-reduced-motion: reduce)` at the bottom of `assets/site.css` collapses all animations/transitions to near-zero duration and forces `.reveal` elements visible; it's intentionally last in the file with `!important` so it always wins. The Spectral gallery auto-scroll script additionally checks `matchMedia('(prefers-reduced-motion: reduce)')` and skips the `requestAnimationFrame` loop entirely, since that motion is JS-driven and the CSS override can't reach it.
+- The hidden state is scoped to `:not(.is-visible)`, so a revealed element carries no reveal `transform` and component hover lifts like `.app-card:hover` apply normally. Don't add a `transform` to `.reveal.is-visible`; it would outrank those hover rules.
