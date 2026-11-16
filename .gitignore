@@ -1,1 +1,5 @@
 .DS_Store
+
+# Local design-tool notes and settings (not part of the site)
+PRODUCT.md
+.impeccable/
