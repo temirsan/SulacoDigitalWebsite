@@ -90,25 +90,29 @@ html { scrollbar-color: oklch(40% 0.03 280) var(--ink-void); }
 }
 .backdrop-dots {
   position: absolute; inset: 0;
+  /* Static base tint: the dots are always visible, even if the moving bands fail to paint */
+  background-color: oklch(72% 0.1 var(--accent-h) / 0.11);
   -webkit-mask-image: radial-gradient(circle at center, #000 1px, transparent 1.5px);
   mask-image: radial-gradient(circle at center, #000 1px, transparent 1.5px);
   -webkit-mask-size: 22px 22px;
   mask-size: 22px 22px;
 }
-.backdrop-dots i {
-  position: absolute; inset: -900px;
-  will-change: transform;
-}
+/* Each band layer is only as much larger than the viewport as its one-period
+   drift needs, on the sides it drifts away from. Oversizing it on every side
+   pushed the layer past phone GPU texture limits and the dots vanished. */
+.backdrop-dots i { position: absolute; }
 .backdrop-dots i:nth-child(1) {
+  inset: -270.5px 0 0 -580px;
   background:
     repeating-linear-gradient(115deg,
-      oklch(70% 0.1 var(--accent-h) / 0.08) 0px,
-      oklch(80% 0.15 var(--accent-h) / 0.5) 160px,
-      oklch(70% 0.1 var(--accent-h) / 0.1) 320px,
-      oklch(70% 0.1 var(--accent-h) / 0.1) 640px);
+      transparent 0px,
+      oklch(80% 0.15 var(--accent-h) / 0.45) 160px,
+      transparent 320px,
+      transparent 640px);
   animation: dots-drift-a 34s linear infinite;
 }
 .backdrop-dots i:nth-child(2) {
+  inset: 0 0 -380.4px -815.7px;
   background:
     repeating-linear-gradient(65deg,
       transparent 0px,
@@ -120,6 +124,32 @@ html { scrollbar-color: oklch(40% 0.03 280) var(--ink-void); }
 /* translate = one gradient period along each band's own direction */
 @keyframes dots-drift-a { to { transform: translate3d(580px, 270.5px, 0); } }
 @keyframes dots-drift-b { from { transform: translate3d(815.7px, -380.4px, 0); } to { transform: translate3d(0, 0, 0); } }
+
+/* Phones: shorter periods, so the layers stay small at 3x pixel density */
+@media (max-width: 600px) {
+  .backdrop-dots i:nth-child(1) {
+    inset: -169px 0 0 -362.5px;
+    background:
+      repeating-linear-gradient(115deg,
+        transparent 0px,
+        oklch(80% 0.15 var(--accent-h) / 0.45) 100px,
+        transparent 200px,
+        transparent 400px);
+    animation-name: dots-drift-a-sm;
+  }
+  .backdrop-dots i:nth-child(2) {
+    inset: 0 0 -236.7px -507.5px;
+    background:
+      repeating-linear-gradient(65deg,
+        transparent 0px,
+        oklch(76% 0.13 calc(var(--accent-h) - 45) / 0.42) 140px,
+        transparent 280px,
+        transparent 560px);
+    animation-name: dots-drift-b-sm;
+  }
+}
+@keyframes dots-drift-a-sm { to { transform: translate3d(362.5px, 169px, 0); } }
+@keyframes dots-drift-b-sm { from { transform: translate3d(507.5px, -236.7px, 0); } to { transform: translate3d(0, 0, 0); } }
 
 body > * { position: relative; z-index: 1; }
 
