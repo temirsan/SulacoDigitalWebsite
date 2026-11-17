@@ -7,6 +7,16 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=2">
   <title>Writing · Temir Atambayev · Sulaco Digital</title>
   <meta name="description" content="Notes on Android development and shipping Spectral, by senior Android engineer Temir Atambayev.">
+  <link rel="canonical" href="https://sulacodigital.com/blog.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sulaco Digital">
+  <meta property="og:title" content="Writing · Temir Atambayev">
+  <meta property="og:description" content="Notes on Android development and shipping Spectral.">
+  <meta property="og:url" content="https://sulacodigital.com/blog.html">
+  <meta property="og:image" content="https://sulacodigital.com/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -48,7 +58,7 @@
     }
 
     .featured-media {
-      background: linear-gradient(160deg, oklch(22% 0.035 280), oklch(13% 0.02 280));
+      background: linear-gradient(160deg, oklch(22% 0.035 var(--accent-h)), oklch(13% 0.02 var(--accent-h)));
       display: flex;
       align-items: flex-end;
       justify-content: center;
@@ -60,7 +70,7 @@
       height: auto;
       display: block;
       margin-bottom: -18%;
-      filter: drop-shadow(0 24px 40px oklch(5% 0.01 280 / 0.6));
+      filter: drop-shadow(0 24px 40px oklch(5% 0.01 var(--accent-h) / 0.6));
     }
 
     .featured-body {
@@ -121,10 +131,13 @@
       transition: color 0.2s;
     }
     .read-link:hover { color: var(--accent-hi); }
+    /* 44px tap height without moving the underline */
+    .read-link { position: relative; }
+    .read-link::after { content: ""; position: absolute; inset: -12px 0; }
 
     .posts-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
       gap: 1rem;
     }
 
@@ -174,7 +187,7 @@
     }
   </style>
   <meta name="theme-color" content="#08060d">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>if ('IntersectionObserver' in window) document.documentElement.classList.add('js');</script>
 </head>
 <body>
   <div class="backdrop" aria-hidden="true"><div class="backdrop-dots"><i></i><i></i></div></div>
@@ -211,7 +224,7 @@
 
     <article class="panel featured-post reveal">
       <div class="featured-media">
-        <img src="frames/explore_dark.webp" alt="Spectral's dark Explore screen" loading="lazy">
+        <img src="frames/explore_dark.webp" alt="Spectral's dark Explore screen" loading="lazy" width="900" height="1901">
       </div>
       <div class="featured-body">
         <div class="tags">

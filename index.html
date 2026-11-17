@@ -7,12 +7,18 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=2">
   <title>Temir Atambayev · Senior Android Engineer · Sulaco Digital</title>
   <meta name="description" content="Temir Atambayev is a senior Android engineer in Auckland, NZ, most recently at Trade Me. Sulaco Digital is where he designs, builds and ships his own apps, starting with Spectral.">
-  <meta name="theme-color" content="#08060d">
+  <link rel="canonical" href="https://sulacodigital.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sulaco Digital">
   <meta property="og:title" content="Temir Atambayev · Senior Android Engineer">
   <meta property="og:description" content="Nine years of Android at scale, most recently at Trade Me. Builder of Spectral, a wallpaper app for Android.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="frames/explore_dark.webp">
-  <script>document.documentElement.classList.add('js');</script>
+  <meta property="og:url" content="https://sulacodigital.com/">
+  <meta property="og:image" content="https://sulacodigital.com/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#08060d">
+  <script>if ('IntersectionObserver' in window) document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -60,6 +66,8 @@
     .h-impulse p { margin-top: 0.9rem; }
     .h-link { color: var(--accent-hi); font-weight: 500; text-decoration: none; }
     .h-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .h-link { position: relative; align-self: flex-start; }
+    .h-link::after { content: ""; position: absolute; inset: -12px 0; }
 
     .h-exp { grid-column: span 8; }
     .h-exp ol { list-style: none; margin-top: 1.5rem; }
@@ -79,7 +87,7 @@
     .h-post h3 { font-size: 1.6rem; letter-spacing: -0.03em; line-height: 1.12; max-width: 22ch; }
     .h-post .meta { color: var(--fg-mute); font-size: 0.9rem; margin-top: 0.75rem; }
     .h-tone { display: flex; height: 56px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
-    .h-tone i { flex: 1; font-style: normal; font-family: var(--font-mono); font-size: 0.72rem; color: oklch(80% 0.02 280); display: flex; align-items: flex-end; padding: 6px 8px; }
+    .h-tone i { flex: 1; font-style: normal; font-family: var(--font-mono); font-size: 0.75rem; color: oklch(80% 0.02 var(--accent-h)); display: flex; align-items: flex-end; padding: 6px 8px; }
     .h-drafts { grid-column: span 5; background: transparent; border-style: dashed; }
     .h-drafts h2 { font-size: 1.1rem; color: var(--fg-dim); font-weight: 500; letter-spacing: -0.02em; }
     .h-drafts li { color: var(--fg-dim); }

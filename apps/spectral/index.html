@@ -7,8 +7,16 @@
   <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png?v=2">
   <title>Spectral · Wallpaper app for Android · Sulaco Digital</title>
   <meta name="description" content="Spectral is an Android wallpaper app: stack glass, liquid and stripe overlays on curated photos or generated backgrounds. Free on Google Play, with a one-time Pro unlock.">
+  <link rel="canonical" href="https://sulacodigital.com/apps/spectral/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sulaco Digital">
   <meta property="og:title" content="Spectral · Build your own wallpaper">
-  <meta property="og:image" content="../../frames/collections_tablet.webp">
+  <meta property="og:description" content="An Android wallpaper app: stack glass, liquid and stripe overlays on photos or generated backgrounds. Free on Google Play.">
+  <meta property="og:url" content="https://sulacodigital.com/apps/spectral/">
+  <meta property="og:image" content="https://sulacodigital.com/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -58,7 +66,8 @@
     .device-showcase-v2 img {
       position: absolute;
       display: block;
-      filter: drop-shadow(0 30px 60px oklch(8% 0.02 280 / 0.7));
+      height: auto;
+      filter: drop-shadow(0 30px 60px oklch(8% 0.02 var(--accent-h) / 0.7));
     }
     /* Cascade: tablet back-left → foldable center → phone front-right.
        Each device overlaps the previous; phone right edge reaches container right (100%). */
@@ -97,7 +106,8 @@
       background: none;
       border: 1px solid var(--border-2);
       border-radius: 100px;
-      padding: 0.45rem 0.95rem;
+      min-height: 44px;
+      padding: 0.45rem 1.1rem;
       color: var(--fg-dim);
       font: 500 0.85rem var(--font-sans);
       cursor: pointer;
@@ -130,7 +140,7 @@
       display: block;
       opacity: 0.85;
       transition: opacity 0.3s, transform 0.3s;
-      filter: drop-shadow(0 20px 40px oklch(6% 0.02 280 / 0.6));
+      filter: drop-shadow(0 20px 40px oklch(6% 0.02 var(--accent-h) / 0.6));
     }
     .gallery-scroll img:nth-child(even) {
       transform: translateY(56px);
@@ -213,8 +223,184 @@
       z-index: 1;
       max-width: 72%;
       height: auto;
-      filter: drop-shadow(0 30px 60px oklch(6% 0.02 280 / 0.7));
+      filter: drop-shadow(0 30px 60px oklch(6% 0.02 var(--accent-h) / 0.7));
     }
+
+    /* Overlay demo: one phone, the same wallpaper, each overlay wiped on in turn.
+       --wipe is a registered property so the mask edge can animate (JS, Web Animations). */
+    @property --wipe {
+      syntax: '<percentage>';
+      inherits: false;
+      initial-value: 130%;
+    }
+    .overlay-demo {
+      display: grid;
+      grid-template-columns: minmax(0, 300px) 1fr;
+      grid-template-areas: "stage head" "stage picker";
+      grid-template-rows: auto auto;
+      column-gap: 5rem;
+      row-gap: 2rem;
+      align-content: center;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 4rem;
+    }
+    .overlay-demo-head { grid-area: head; align-self: end; }
+    .overlay-demo-head h2 {
+      font-size: clamp(1.75rem, 3.2vw, 2.6rem);
+      font-weight: 500;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+      margin-bottom: 0.85rem;
+    }
+    .overlay-demo-head p {
+      color: var(--fg-dim);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      max-width: 46ch;
+    }
+    .overlay-stage {
+      grid-area: stage;
+      position: relative;
+      width: 100%;
+      aspect-ratio: 600 / 1263;
+      filter: drop-shadow(0 30px 60px oklch(6% 0.02 var(--accent-h) / 0.7));
+    }
+    .overlay-stage img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: auto;
+      display: block;
+      -webkit-mask-image: linear-gradient(115deg, #000 calc(var(--wipe) - 24%), transparent var(--wipe));
+      mask-image: linear-gradient(115deg, #000 calc(var(--wipe) - 24%), transparent var(--wipe));
+    }
+    .overlay-stage img.is-front { z-index: 1; }
+
+    .overlay-picker { grid-area: picker; align-self: start; }
+    .overlay-group + .overlay-group { margin-top: 1.5rem; }
+    .overlay-group h3 {
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.75rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.75rem;
+    }
+    .overlay-group h3 span {
+      font: 400 0.85rem var(--font-sans);
+      letter-spacing: 0;
+      color: var(--fg-mute);
+    }
+    .overlay-swatches { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .overlay-swatch {
+      position: relative;
+      width: 52px; height: 52px;
+      padding: 0;
+      border: 1px solid var(--border-2);
+      border-radius: 14px;
+      background: none;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.25s var(--ease);
+    }
+    .overlay-swatch img {
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 150px; max-width: none;
+      height: auto;
+      transform: translate(-50%, -50%);
+      opacity: 0.6;
+      transition: opacity 0.25s var(--ease);
+    }
+    .overlay-swatch:hover img,
+    .overlay-swatch[aria-pressed="true"] img { opacity: 1; }
+    .overlay-swatch:hover { border-color: var(--fg-mute); }
+    .overlay-swatch[aria-pressed="true"] {
+      border-color: var(--accent-hi);
+      box-shadow: 0 0 0 1px var(--accent-hi);
+    }
+    .overlay-swatch:focus-visible {
+      outline: 2px solid var(--accent-hi);
+      outline-offset: 3px;
+    }
+    .overlay-picker .gallery-pause { margin-top: 1.75rem; }
+
+    /* Pattern demo: a foldable that opens like a book. Each pattern is its own
+       stacked device (closed cover + the two halves of the open screen); the
+       stage's .is-open swings every cover on its hinge, .is-active picks the pattern. */
+    .fold-demo {
+      display: grid;
+      grid-template-columns: 1fr minmax(0, 440px);
+      grid-template-areas: "head stage" "picker stage";
+      grid-template-rows: auto auto;
+      column-gap: 5rem;
+      row-gap: 2rem;
+      align-content: center;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 4rem;
+    }
+    .fold-demo .overlay-demo-head { grid-area: head; }
+    .fold-picker { grid-area: picker; align-self: start; }
+    .fold-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.75rem; }
+    .fold-stage {
+      grid-area: stage;
+      position: relative;
+      width: 100%;
+      aspect-ratio: 2201 / 2268;
+      filter: drop-shadow(0 30px 60px oklch(6% 0.02 var(--accent-h) / 0.7));
+    }
+    .fold {
+      position: absolute;
+      inset: 0;
+      perspective: 1800px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(-25%);
+      transition: opacity 0.45s var(--ease), visibility 0s 0.45s,
+                  transform 0.9s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .fold.is-active {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.45s var(--ease), visibility 0s,
+                  transform 0.9s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .fold-stage.is-open .fold { transform: none; }
+    .fold img { position: absolute; top: 0; height: 100%; max-width: none; display: block; }
+    .fold-right {
+      position: absolute;
+      top: 0; left: 50%;
+      width: 50%; height: 100%;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0s 0.9s;
+    }
+    .fold-stage.is-open .fold-right { opacity: 1; transition-delay: 0s; }
+    .fold-right img { right: 0; width: 200%; }
+    .fold-cover {
+      position: absolute;
+      top: 0; left: 50%;
+      width: 50%; height: 100%;
+      transform-origin: left center;
+      transform-style: preserve-3d;
+      transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .fold-stage.is-open .fold-cover { transform: rotateY(-180deg); }
+    .fold-face {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+    .fold-front img { left: 0; width: 100%; }
+    /* Once open, one whole image sits on top so the two halves leave no seam. */
+    .fold-full { position: absolute; inset: 0; opacity: 0; transition: opacity 0s; }
+    .fold-full img { left: 0; width: 100%; }
+    .fold-stage.is-open .fold-full { opacity: 1; transition: opacity 0.15s 0.9s; }
+    .fold-back { transform: rotateY(180deg); }
+    .fold-back img { left: 0; width: 200%; }
 
     .supporting-head {
       margin-bottom: 2rem;
@@ -237,7 +423,7 @@
       transition: background 0.3s var(--ease);
     }
     .support-card:nth-child(3n) { border-right: none; }
-    .support-card:hover { background: oklch(12% 0.01 280 / 0.4); }
+    .support-card:hover { background: oklch(12% 0.01 var(--accent-h) / 0.4); }
     .support-card h3 {
       font-size: 1.05rem;
       font-weight: 500;
@@ -292,6 +478,18 @@
       .device-showcase-v2 .ds-foldable { width: 45%; left: 37%; }
       .device-showcase-v2 .ds-phone    { width: 23%; left: 77%; }
       .feature-spotlight { grid-template-columns: 1fr; gap: 2rem; }
+      .overlay-demo {
+        grid-template-columns: 1fr;
+        grid-template-areas: "head" "stage" "picker";
+        row-gap: 2.5rem;
+      }
+      .overlay-stage { max-width: 260px; margin: 0 auto; }
+      .fold-demo {
+        grid-template-columns: 1fr;
+        grid-template-areas: "head" "stage" "picker";
+        row-gap: 2.5rem;
+      }
+      .fold-stage { max-width: 400px; margin: 0 auto; }
       .supporting-grid { grid-template-columns: 1fr 1fr; }
       .support-card:nth-child(3n) { border-right: 1px solid var(--border); }
       .support-card:nth-child(2n) { border-right: none; }
@@ -304,7 +502,7 @@
     }
   </style>
   <meta name="theme-color" content="#08060d">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>if ('IntersectionObserver' in window) document.documentElement.classList.add('js');</script>
 </head>
 <body>
   <div class="backdrop" aria-hidden="true"><div class="backdrop-dots"><i></i><i></i></div></div>
@@ -353,9 +551,9 @@
       </ul>
     </div>
     <div class="device-showcase-v2 reveal" style="transition-delay:.06s;">
-      <img class="ds-tablet" src="../../frames/collections_tablet.webp" alt="Spectral's collections screen on a tablet">
-      <img class="ds-foldable" src="../../frames/image_editor_foldable.webp" alt="Spectral's image editor on a foldable">
-      <img class="ds-phone" src="../../frames/explore_dark.webp" alt="Spectral's Explore screen on a phone">
+      <img class="ds-tablet" src="../../frames/collections_tablet.webp" alt="Spectral's collections screen on a tablet" width="1100" height="722">
+      <img class="ds-foldable" src="../../frames/image_editor_foldable.webp" alt="Spectral's image editor on a foldable" width="900" height="928">
+      <img class="ds-phone" src="../../frames/explore_dark.webp" alt="Spectral's Explore screen on a phone" width="900" height="1901">
     </div>
   </section>
 
@@ -370,12 +568,12 @@
     <div class="gallery-wrap">
       <div class="gallery-scroll">
         <div class="gallery-set">
-          <img src="../../frames/collections_dark.webp" alt="Curated collections" loading="lazy">
-          <img src="../../frames/my_library_dark.webp" alt="Your library of saved wallpapers" loading="lazy">
-          <img src="../../frames/overlays_dark.webp" alt="The overlay picker" loading="lazy">
-          <img src="../../frames/background_generator.webp" alt="The background generator" loading="lazy">
-          <img src="../../frames/image_editor_stripes.webp" alt="The editor with a stripes overlay" loading="lazy">
-          <img src="../../frames/explore_light.webp" alt="Explore in light mode" loading="lazy">
+          <img src="../../frames/collections_dark.webp" alt="Curated collections" loading="lazy" width="900" height="1901">
+          <img src="../../frames/my_library_dark.webp" alt="Your library of saved wallpapers" loading="lazy" width="900" height="1901">
+          <img src="../../frames/overlays_dark.webp" alt="The overlay picker" loading="lazy" width="900" height="1901">
+          <img src="../../frames/background_generator.webp" alt="The background generator" loading="lazy" width="900" height="1901">
+          <img src="../../frames/image_editor_stripes.webp" alt="The editor with a stripes overlay" loading="lazy" width="900" height="1901">
+          <img src="../../frames/explore_light.webp" alt="Explore in light mode" loading="lazy" width="900" height="1901">
         </div>
       </div>
     </div>
@@ -397,7 +595,126 @@
         </ul>
       </div>
       <div class="spotlight-visual reveal" style="transition-delay:.05s;">
-        <img src="../../frames/overlays_dark.webp" alt="Spectral's overlay picker" loading="lazy">
+        <img src="../../frames/overlays_dark.webp" alt="Spectral's overlay picker" loading="lazy" width="900" height="1901">
+      </div>
+    </div>
+
+    <div class="overlay-demo" id="overlayDemo">
+      <div class="overlay-demo-head reveal">
+        <h2>One wallpaper, sixteen overlays.</h2>
+        <p>
+          The same image under every overlay, straight from the editor.
+          Pick one to see it applied.
+        </p>
+      </div>
+
+      <div class="overlay-stage reveal">
+        <img class="is-front" src="../../frames/overlay_standard_1.webp" alt="Soft grain overlay on the wallpaper" loading="lazy" width="600" height="1263">
+        <img src="../../frames/overlay_standard_1.webp" alt="" loading="lazy" width="600" height="1263">
+      </div>
+
+      <div class="overlay-picker reveal" style="transition-delay:.06s;">
+        <div class="overlay-group" role="group" aria-labelledby="overlayStandard">
+          <h3 id="overlayStandard">Standard</h3>
+          <div class="overlay-swatches">
+            <button type="button" class="overlay-swatch" aria-pressed="true" aria-label="Soft grain"><img src="../../frames/overlay_standard_1.webp" alt="" loading="lazy" width="600" height="1263"></button>
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Pixel blocks"><img src="../../frames/overlay_standard_2.webp" alt="" loading="lazy" width="600" height="1263"></button>
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Concentric rings"><img src="../../frames/overlay_standard_3.webp" alt="" loading="lazy" width="600" height="1263"></button>
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Dot grid"><img src="../../frames/overlay_standard_4.webp" alt="" loading="lazy" width="600" height="1263"></button>
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Hexagons"><img src="../../frames/overlay_standard_5.webp" alt="" loading="lazy" width="600" height="1263"></button>
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Wavy lines"><img src="../../frames/overlay_standard_6.webp" alt="" loading="lazy" width="600" height="1263"></button>
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Ribbed waves"><img src="../../frames/overlay_standard_7.webp" alt="" loading="lazy" width="600" height="1263"></button>
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Square grid"><img src="../../frames/overlay_standard_8.webp" alt="" loading="lazy" width="600" height="1263"></button>
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Vertical flutes"><img src="../../frames/overlay_standard_9.webp" alt="" loading="lazy" width="600" height="1263"></button>
+          </div>
+        </div>
+        <div class="overlay-group" role="group" aria-labelledby="overlayGlass">
+          <h3 id="overlayGlass">Premium glass <span>Part of Spectral Pro</span></h3>
+          <div class="overlay-swatches">
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Horizontal glass panes"><img src="../../frames/overlay_glass_1.webp" alt="" loading="lazy" width="600" height="1263"></button>
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Glass columns"><img src="../../frames/overlay_glass_2.webp" alt="" loading="lazy" width="600" height="1263"></button>
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Glass arches"><img src="../../frames/overlay_glass_3.webp" alt="" loading="lazy" width="600" height="1263"></button>
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Glass circles"><img src="../../frames/overlay_glass_4.webp" alt="" loading="lazy" width="600" height="1263"></button>
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Glass squares"><img src="../../frames/overlay_glass_5.webp" alt="" loading="lazy" width="600" height="1263"></button>
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Glass lettering"><img src="../../frames/overlay_glass_6.webp" alt="" loading="lazy" width="600" height="1263"></button>
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Glass ripples"><img src="../../frames/overlay_glass_7.webp" alt="" loading="lazy" width="600" height="1263"></button>
+          </div>
+        </div>
+        <button type="button" class="gallery-pause" id="overlayPause" aria-pressed="false" hidden>
+          <svg viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><rect x="1" y="0" width="3" height="10"/><rect x="6" y="0" width="3" height="10"/></svg>
+          <span>Pause</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="fold-demo" id="foldDemo">
+      <div class="overlay-demo-head reveal">
+        <h2>Generate a pattern.<br>Unfold it.</h2>
+        <p>
+          The generator builds backgrounds from scratch, then composes each one
+          again for the screen it lands on. Here are five of its patterns on a
+          foldable, closed and open.
+        </p>
+      </div>
+
+      <div class="fold-stage reveal" id="foldStage" role="img" aria-label="Hexagon lattice pattern on a closed foldable">
+        <div class="fold is-active">
+          <div class="fold-right"><img src="../../frames/pattern_open_1.webp" alt="" loading="lazy" width="900" height="927"></div>
+          <div class="fold-cover">
+            <div class="fold-face fold-front"><img src="../../frames/pattern_closed_1.webp" alt="" loading="lazy" width="450" height="908"></div>
+            <div class="fold-face fold-back"><img src="../../frames/pattern_open_1.webp" alt="" loading="lazy" width="900" height="927"></div>
+          </div>
+          <div class="fold-full"><img src="../../frames/pattern_open_1.webp" alt="" loading="lazy" width="900" height="927"></div>
+        </div>
+        <div class="fold">
+          <div class="fold-right"><img src="../../frames/pattern_open_2.webp" alt="" loading="lazy" width="900" height="927"></div>
+          <div class="fold-cover">
+            <div class="fold-face fold-front"><img src="../../frames/pattern_closed_2.webp" alt="" loading="lazy" width="450" height="908"></div>
+            <div class="fold-face fold-back"><img src="../../frames/pattern_open_2.webp" alt="" loading="lazy" width="900" height="927"></div>
+          </div>
+          <div class="fold-full"><img src="../../frames/pattern_open_2.webp" alt="" loading="lazy" width="900" height="927"></div>
+        </div>
+        <div class="fold">
+          <div class="fold-right"><img src="../../frames/pattern_open_3.webp" alt="" loading="lazy" width="900" height="927"></div>
+          <div class="fold-cover">
+            <div class="fold-face fold-front"><img src="../../frames/pattern_closed_3.webp" alt="" loading="lazy" width="450" height="908"></div>
+            <div class="fold-face fold-back"><img src="../../frames/pattern_open_3.webp" alt="" loading="lazy" width="900" height="927"></div>
+          </div>
+          <div class="fold-full"><img src="../../frames/pattern_open_3.webp" alt="" loading="lazy" width="900" height="927"></div>
+        </div>
+        <div class="fold">
+          <div class="fold-right"><img src="../../frames/pattern_open_4.webp" alt="" loading="lazy" width="900" height="927"></div>
+          <div class="fold-cover">
+            <div class="fold-face fold-front"><img src="../../frames/pattern_closed_4.webp" alt="" loading="lazy" width="450" height="908"></div>
+            <div class="fold-face fold-back"><img src="../../frames/pattern_open_4.webp" alt="" loading="lazy" width="900" height="927"></div>
+          </div>
+          <div class="fold-full"><img src="../../frames/pattern_open_4.webp" alt="" loading="lazy" width="900" height="927"></div>
+        </div>
+        <div class="fold">
+          <div class="fold-right"><img src="../../frames/pattern_open_5.webp" alt="" loading="lazy" width="900" height="927"></div>
+          <div class="fold-cover">
+            <div class="fold-face fold-front"><img src="../../frames/pattern_closed_5.webp" alt="" loading="lazy" width="450" height="908"></div>
+            <div class="fold-face fold-back"><img src="../../frames/pattern_open_5.webp" alt="" loading="lazy" width="900" height="927"></div>
+          </div>
+          <div class="fold-full"><img src="../../frames/pattern_open_5.webp" alt="" loading="lazy" width="900" height="927"></div>
+        </div>
+      </div>
+
+      <div class="fold-picker reveal" style="transition-delay:.06s;">
+        <div class="overlay-swatches" role="group" aria-label="Patterns">
+            <button type="button" class="overlay-swatch" aria-pressed="true" aria-label="Hexagon lattice"><img src="../../frames/pattern_closed_1.webp" alt="" loading="lazy" width="450" height="908"></button>
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Arched bands"><img src="../../frames/pattern_closed_2.webp" alt="" loading="lazy" width="450" height="908"></button>
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Gradient stripes"><img src="../../frames/pattern_closed_3.webp" alt="" loading="lazy" width="450" height="908"></button>
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Scallops"><img src="../../frames/pattern_closed_4.webp" alt="" loading="lazy" width="450" height="908"></button>
+            <button type="button" class="overlay-swatch" aria-pressed="false" aria-label="Concentric rings"><img src="../../frames/pattern_closed_5.webp" alt="" loading="lazy" width="450" height="908"></button>
+        </div>
+        <div class="fold-actions">
+          <button type="button" class="gallery-pause" id="foldToggle" aria-pressed="false" hidden><span>Unfold</span></button>
+          <button type="button" class="gallery-pause" id="foldPause" aria-pressed="false" hidden>
+            <svg viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><rect x="1" y="0" width="3" height="10"/><rect x="6" y="0" width="3" height="10"/></svg>
+            <span>Pause</span>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -530,6 +847,149 @@
       const start = () => { ensureWide(); requestAnimationFrame(tick); };
       if (document.readyState === 'complete') start();
       else window.addEventListener('load', start);
+    })();
+  </script>
+
+  <script>
+    // Overlay demo: auto-advances through the overlays, wiping each one across
+    // the phone. Picking a swatch shows it and holds; Pause/Play toggles the
+    // loop. Stops while offscreen or hidden. Under reduced motion there is no
+    // autoplay and a pick crossfades instead of wiping.
+    (function () {
+      const demo = document.getElementById('overlayDemo');
+      if (!demo || !('animate' in Element.prototype)) return;
+      const layers = demo.querySelectorAll('.overlay-stage img');
+      const swatches = Array.from(demo.querySelectorAll('.overlay-swatch'));
+      const picker = demo.querySelector('.overlay-picker');
+      const pauseBtn = document.getElementById('overlayPause');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let index = 0, front = 0, token = 0, anim = null, timer = null;
+      let held = reduce, visible = false, hovered = false;
+
+      const show = async (i) => {
+        if (i === index) return;
+        index = i;
+        const mine = ++token;
+        swatches.forEach((s, n) => s.setAttribute('aria-pressed', String(n === i)));
+        const next = layers[1 - front];
+        next.loading = 'eager';
+        next.src = swatches[i].querySelector('img').src;
+        try { await next.decode(); } catch (e) {}
+        if (mine !== token) return;
+        if (anim) anim.finish();
+        const prev = layers[front];
+        prev.classList.remove('is-front');
+        prev.alt = '';
+        next.classList.add('is-front');
+        next.alt = swatches[i].getAttribute('aria-label') + ' overlay on the wallpaper';
+        front = 1 - front;
+        anim = reduce
+          ? next.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 150 })
+          : next.animate([{ '--wipe': '0%' }, { '--wipe': '130%' }],
+              { duration: 1000, easing: 'cubic-bezier(0.65, 0, 0.35, 1)' });
+      };
+
+      const schedule = () => {
+        clearTimeout(timer);
+        if (held || hovered || !visible || document.hidden) return;
+        timer = setTimeout(() => {
+          show((index + 1) % swatches.length);
+          schedule();
+        }, 2600);
+      };
+      const setHeld = (v) => {
+        held = v;
+        if (pauseBtn) {
+          pauseBtn.setAttribute('aria-pressed', String(held));
+          pauseBtn.querySelector('span').textContent = held ? 'Play' : 'Pause';
+        }
+        schedule();
+      };
+
+      swatches.forEach((s, i) => s.addEventListener('click', () => { setHeld(true); show(i); }));
+      if (!reduce) {
+        if (pauseBtn) {
+          pauseBtn.hidden = false;
+          pauseBtn.addEventListener('click', () => setHeld(!held));
+        }
+        picker.addEventListener('mouseenter', () => { hovered = true; schedule(); });
+        picker.addEventListener('mouseleave', () => { hovered = false; schedule(); });
+        document.addEventListener('visibilitychange', schedule);
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver((entries) => {
+            visible = entries[0].isIntersecting;
+            schedule();
+          }, { threshold: 0.4 }).observe(demo.querySelector('.overlay-stage'));
+        }
+      }
+    })();
+  </script>
+
+  <script>
+    // Pattern demo: alternates between folding/unfolding the device and moving
+    // to the next pattern. Picking a pattern or pressing Fold/Unfold holds the
+    // loop; Pause/Play toggles it. Stops while offscreen or hidden; no autoplay
+    // under reduced motion (the fold then snaps, via the global CSS override).
+    (function () {
+      const demo = document.getElementById('foldDemo');
+      const stage = document.getElementById('foldStage');
+      if (!demo || !stage) return;
+      const folds = stage.querySelectorAll('.fold');
+      const swatches = Array.from(demo.querySelectorAll('.overlay-swatch'));
+      const picker = demo.querySelector('.fold-picker');
+      const foldBtn = document.getElementById('foldToggle');
+      const pauseBtn = document.getElementById('foldPause');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let index = 0, open = false, step = 0, timer = null;
+      let held = reduce, visible = false, hovered = false;
+
+      const describe = () => stage.setAttribute('aria-label',
+        swatches[index].getAttribute('aria-label') + ' pattern on ' + (open ? 'an open' : 'a closed') + ' foldable');
+      const setPattern = (i) => {
+        index = i;
+        folds.forEach((f, n) => f.classList.toggle('is-active', n === i));
+        swatches.forEach((s, n) => s.setAttribute('aria-pressed', String(n === i)));
+        describe();
+      };
+      const setOpen = (v) => {
+        open = v;
+        stage.classList.toggle('is-open', open);
+        foldBtn.setAttribute('aria-pressed', String(open));
+        foldBtn.querySelector('span').textContent = open ? 'Fold' : 'Unfold';
+        describe();
+      };
+      const schedule = () => {
+        clearTimeout(timer);
+        if (held || hovered || !visible || document.hidden) return;
+        timer = setTimeout(() => {
+          if (step++ % 2 === 0) setOpen(!open);
+          else setPattern((index + 1) % swatches.length);
+          schedule();
+        }, 2400);
+      };
+      const setHeld = (v) => {
+        held = v;
+        pauseBtn.setAttribute('aria-pressed', String(held));
+        pauseBtn.querySelector('span').textContent = held ? 'Play' : 'Pause';
+        schedule();
+      };
+
+      swatches.forEach((s, i) => s.addEventListener('click', () => { setHeld(true); setPattern(i); }));
+      foldBtn.hidden = false;
+      foldBtn.addEventListener('click', () => { setHeld(true); setOpen(!open); });
+      if (!reduce) {
+        pauseBtn.hidden = false;
+        pauseBtn.addEventListener('click', () => setHeld(!held));
+        picker.addEventListener('mouseenter', () => { hovered = true; schedule(); });
+        picker.addEventListener('mouseleave', () => { hovered = false; schedule(); });
+        document.addEventListener('visibilitychange', schedule);
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver((entries) => {
+            visible = entries[0].isIntersecting;
+            schedule();
+          }, { threshold: 0.4 }).observe(stage);
+        }
+      }
     })();
   </script>
 
