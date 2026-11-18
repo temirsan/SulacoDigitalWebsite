@@ -160,72 +160,6 @@
       padding: 0 5% 6rem;
     }
 
-    .feature-spotlight {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      padding: 3rem 0 4rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 4rem;
-    }
-    .feature-spotlight h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 500;
-      letter-spacing: -0.035em;
-      line-height: 1.05;
-      margin-bottom: 1.5rem;
-    }
-    .feature-spotlight p {
-      color: var(--fg-dim);
-      font-size: 1.05rem;
-      line-height: 1.6;
-      max-width: 46ch;
-      margin-bottom: 2rem;
-    }
-    .spotlight-bullets {
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-      list-style: none;
-      padding: 0;
-    }
-    .spotlight-bullets li {
-      display: flex;
-      gap: 0.85rem;
-      font-size: 0.95rem;
-      color: var(--fg);
-    }
-    .spotlight-bullets li strong {
-      font-weight: 500;
-      color: var(--fg);
-    }
-    .spotlight-bullets li span {
-      color: var(--fg-dim);
-    }
-    .spotlight-bullets li::before {
-      content: "";
-      flex-shrink: 0;
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent-hi);
-      margin-top: 0.55rem;
-    }
-    .spotlight-visual {
-      position: relative;
-      aspect-ratio: 1/1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .spotlight-visual img {
-      position: relative;
-      z-index: 1;
-      max-width: 72%;
-      height: auto;
-      filter: drop-shadow(0 30px 60px oklch(6% 0.02 var(--accent-h) / 0.7));
-    }
-
     /* Overlay demo: one phone, the same wallpaper, each overlay wiped on in turn.
        --wipe is a registered property so the mask edge can animate (JS, Web Animations). */
     @property --wipe {
@@ -247,11 +181,11 @@
     }
     .overlay-demo-head { grid-area: head; align-self: end; }
     .overlay-demo-head h2 {
-      font-size: clamp(1.75rem, 3.2vw, 2.6rem);
+      font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 500;
       letter-spacing: -0.035em;
-      line-height: 1.1;
-      margin-bottom: 0.85rem;
+      line-height: 1.05;
+      margin-bottom: 1.25rem;
     }
     .overlay-demo-head p {
       color: var(--fg-dim);
@@ -477,7 +411,6 @@
       .device-showcase-v2 .ds-tablet   { width: 79%; left: 0%; }
       .device-showcase-v2 .ds-foldable { width: 45%; left: 37%; }
       .device-showcase-v2 .ds-phone    { width: 23%; left: 77%; }
-      .feature-spotlight { grid-template-columns: 1fr; gap: 2rem; }
       .overlay-demo {
         grid-template-columns: 1fr;
         grid-template-areas: "head" "stage" "picker";
@@ -490,9 +423,6 @@
         row-gap: 2.5rem;
       }
       .fold-stage { max-width: 400px; margin: 0 auto; }
-      .supporting-grid { grid-template-columns: 1fr 1fr; }
-      .support-card:nth-child(3n) { border-right: 1px solid var(--border); }
-      .support-card:nth-child(2n) { border-right: none; }
     }
     @media (max-width: 600px) {
       .supporting-grid { grid-template-columns: 1fr; }
@@ -580,31 +510,14 @@
   </section>
 
   <section class="features-section">
-    <div class="feature-spotlight">
-      <div class="reveal">
-        <h2>Stack overlays<br>like layers in Photoshop.</h2>
-        <p>
-          Glass, liquid, stripes and patterns: pile them on any image or generated
-          background. Every layer is non-destructive and fully tunable. Pull a
-          slider, and commit when it feels right.
-        </p>
-        <ul class="spotlight-bullets">
-          <li><span><strong>Layer any overlay</strong> on any image, or on nothing at all</span></li>
-          <li><span><strong>Every parameter is live:</strong> drag a slider and see it update</span></li>
-          <li><span><strong>Premium overlays</strong> such as liquid glass, droplets and stripes come with Pro</span></li>
-        </ul>
-      </div>
-      <div class="spotlight-visual reveal" style="transition-delay:.05s;">
-        <img src="../../frames/overlays_dark.webp" alt="Spectral's overlay picker" loading="lazy" width="900" height="1901">
-      </div>
-    </div>
-
     <div class="overlay-demo" id="overlayDemo">
       <div class="overlay-demo-head reveal">
-        <h2>One wallpaper, sixteen overlays.</h2>
+        <h2>One wallpaper,<br>overlay after overlay.</h2>
         <p>
-          The same image under every overlay, straight from the editor.
-          Pick one to see it applied.
+          Glass, stripes and patterns, layered on a photo or a generated
+          background. Every layer is non-destructive and every parameter is
+          live: pull a slider, and commit when it feels right. Here is the
+          same image under a selection of them, straight from the editor.
         </p>
       </div>
 
@@ -723,10 +636,6 @@
     </div>
     <div class="supporting-grid">
       <div class="support-card reveal">
-        <h3>Wallpaper generator</h3>
-        <p>Build backgrounds from scratch with gradients, meshes and patterns. No source image needed.</p>
-      </div>
-      <div class="support-card reveal" style="transition-delay:.02s;">
         <h3>Curated collections</h3>
         <p>Nature, abstract and mesh-gradient images, ready to layer.</p>
       </div>
@@ -734,17 +643,9 @@
         <h3>My library</h3>
         <p>Every edit, favourite, and recent wallpaper in one place.</p>
       </div>
-      <div class="support-card reveal" style="transition-delay:.06s;">
-        <h3>Live preview</h3>
-        <p>Drag any slider, see it update instantly. What you see is what applies.</p>
-      </div>
       <div class="support-card reveal" style="transition-delay:.08s;">
         <h3>Device-aware crops</h3>
         <p>Phones, foldables and tablets each get the right composition.</p>
-      </div>
-      <div class="support-card reveal" style="transition-delay:.1s;">
-        <h3>Spectral Pro</h3>
-        <p>A one-time purchase that removes ads and unlocks the premium overlays.</p>
       </div>
     </div>
   </section>
