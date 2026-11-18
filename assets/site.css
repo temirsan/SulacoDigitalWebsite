@@ -84,16 +84,17 @@ html { scrollbar-color: oklch(40% 0.03 var(--accent-h)) var(--ink-void); }
   overflow: hidden;
   background:
     radial-gradient(ellipse 75% 60% at 12% 0%, oklch(36% 0.15 var(--accent-h) / 0.55) 0%, transparent 68%),
-    radial-gradient(ellipse 65% 55% at 92% 12%, oklch(34% 0.14 calc(var(--accent-h) - 40) / 0.5) 0%, transparent 66%),
-    radial-gradient(ellipse 90% 55% at 50% 108%, oklch(26% 0.1 calc(var(--accent-h) - 25) / 0.5) 0%, transparent 70%),
+    radial-gradient(ellipse 65% 55% at 92% 8%, oklch(36% 0.14 calc(var(--accent-h) - 60) / 0.55) 0%, transparent 66%),
+    radial-gradient(ellipse 55% 50% at 96% 72%, oklch(32% 0.12 calc(var(--accent-h) + 45) / 0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 55% at 22% 108%, oklch(32% 0.09 calc(var(--accent-h) - 110) / 0.45) 0%, transparent 70%),
     linear-gradient(180deg, oklch(11% 0.035 var(--accent-h)), oklch(7% 0.02 calc(var(--accent-h) - 20)));
 }
 .backdrop-dots {
   position: absolute; inset: 0;
   /* Static base tint: the dots are always visible, even if the moving bands fail to paint */
   background-color: oklch(72% 0.1 var(--accent-h) / 0.11);
-  -webkit-mask-image: radial-gradient(circle at center, #000 1px, transparent 1.5px);
-  mask-image: radial-gradient(circle at center, #000 1px, transparent 1.5px);
+  -webkit-mask-image: radial-gradient(circle at center, #000 0.5px, transparent 0.75px);
+  mask-image: radial-gradient(circle at center, #000 0.5px, transparent 0.75px);
   -webkit-mask-size: 22px 22px;
   mask-size: 22px 22px;
 }
